@@ -1,6 +1,5 @@
 # Crear directorios y archivos necesarios para el proyecto
 mkdir -p /my-project
-cd /my-project
 
 # Create network
 sudo docker network create --driver bridge smart-shell-network

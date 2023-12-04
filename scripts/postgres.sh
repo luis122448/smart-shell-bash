@@ -1,3 +1,6 @@
+# Move to /my-project
+cd /my-project
+
 # Clone repository ( Postgres )
 git clone https://github.com/luis122448/smart-shell-postgres.git
 
@@ -16,3 +19,6 @@ echo -e "POSTGRES_USER=postgres\nPOSTGRES_PASSWORD=$$DATABASE_PASSWORD\nPOSTGRES
 
 # Deploy container
 sudo bash deploy.sh
+
+# 
+cd ..

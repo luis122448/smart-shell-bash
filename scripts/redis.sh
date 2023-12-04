@@ -1,3 +1,6 @@
+# Move to /my-project
+cd /my-project
+
 # Clone repository ( Redis )
 git clone https://github.com/luis122448/smart-shell-redis.git
 
@@ -16,3 +19,6 @@ echo -e "REDIS_PASSWORD=$DATABASE_PASSWORD" > "$ENV_FILE"
 
 # Deploy container
 sudo bash deploy.sh
+
+# 
+cd ..
