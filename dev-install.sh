@@ -1,3 +1,6 @@
+#
+cd ..
+
 # Crear directorios y archivos necesarios para el proyecto
 mkdir -p /my-project
 
