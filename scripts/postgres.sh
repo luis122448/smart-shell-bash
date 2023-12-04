@@ -1,8 +1,13 @@
 # Move to /my-project
 cd /my-project
 
-# Clone repository ( Postgres )
-git clone https://github.com/luis122448/smart-shell-postgres.git
+# Verifica si el directorio smart-shell-postgres no existe
+if [ ! -d "smart-shell-postgres" ]; then
+    # Si no existe, clona el repositorio
+    git clone https://github.com/luis122448/smart-shell-postgres.git
+else
+    git pull origin main
+fi
 
 # Ejecute script dev-install.sh
 cd smart-shell-postgres
@@ -15,10 +20,7 @@ if [ ! -f "$ENV_FILE" ]; then
 fi
 
 # Modify .env file
-echo -e "POSTGRES_USER=postgres\nPOSTGRES_PASSWORD=$$DATABASE_PASSWORD\nPOSTGRES_DB=smart-shell" > "$ENV_FILE"
+echo -e "POSTGRES_USER=postgres\nPOSTGRES_PASSWORD=$DATABASE_PASSWORD\nPOSTGRES_DB=smart-shell" > "$ENV_FILE"
 
 # Deploy container
 sudo bash deploy.sh
-
-# 
-cd ..

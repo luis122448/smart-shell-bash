@@ -1,8 +1,13 @@
 # Move to /my-project
 cd /my-project
 
-# Clone repository ( Redis )
-git clone https://github.com/luis122448/smart-shell-redis.git
+# Verifica si el directorio smart-shell-redis no existe
+if [ ! -d "smart-shell-redis" ]; then
+    # Si no existe, clona el repositorio
+    git clone https://github.com/luis122448/smart-shell-redis.git
+else
+    git pull origin main
+fi
 
 # Ejecute script dev-install.sh
 cd smart-shell-redis
@@ -19,6 +24,3 @@ echo -e "REDIS_PASSWORD=$DATABASE_PASSWORD" > "$ENV_FILE"
 
 # Deploy container
 sudo bash deploy.sh
-
-# 
-cd ..
