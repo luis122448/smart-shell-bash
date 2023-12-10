@@ -18,9 +18,6 @@ else
     echo "La red 'smart-shell-network' ya existe."
 fi
 
-# Obtiene la variable DATABASE_PASSWORD del entorno del sistema
-# DATABASE_PASSWORD=1073741824
-
 # Verifica si la variable no está definida
 if [ -z "$DATABASE_PASSWORD" ]; then
     # La variable DATABASE_PASSWORD no está definida en el entorno del sistema
