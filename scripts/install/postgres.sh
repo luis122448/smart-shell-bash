@@ -1,5 +1,5 @@
 # Move to /my-project
-cd /my-project
+cd ./my-project
 
 # Verifica si el directorio smart-shell-postgres no existe
 if [ ! -d "smart-shell-postgres" ]; then
@@ -24,3 +24,6 @@ echo -e "POSTGRES_USER=postgres\nPOSTGRES_PASSWORD=$DATABASE_PASSWORD\nPOSTGRES_
 
 # Deploy container
 sudo bash deploy.sh
+
+# Return to /my-project
+cd ..
