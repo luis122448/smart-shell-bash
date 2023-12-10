@@ -1,4 +1,14 @@
-mkdir -p ./my-project
+DIRECTORY="./my-project"
+
+# Verifica si el directorio existe
+if [ -d "$DIRECTORY" ]; then
+    # Elimina todo el contenido del directorio si existe
+    rm -rf "$DIRECTORY"/*
+    echo "El contenido del directorio '$DIRECTORY' ha sido eliminado."
+else
+    mkdir -p "$DIRECTORY"
+    echo "El directorio '$DIRECTORY' se ha creado."
+fi
 
 # Verifica si la red ya existe
 if ! sudo docker network inspect smart-shell-network &>/dev/null; then
@@ -8,10 +18,16 @@ else
     echo "La red 'smart-shell-network' ya existe."
 fi
 
-# Configurando permisos de ejecucion
-sudo chmod +x ./scripts/install/postgres.sh
-sudo chmod +x ./scripts/install/redis.sh
+# Obtiene la variable DATABASE_PASSWORD del entorno del sistema
+# DATABASE_PASSWORD=1073741824
+
+# Verifica si la variable no está definida
+if [ -z "$DATABASE_PASSWORD" ]; then
+    # La variable DATABASE_PASSWORD no está definida en el entorno del sistema
+    echo "La variable DATABASE_PASSWORD no está definida en el entorno del sistema." >&2
+    exit 1000
+fi
 
 # Ejecutando scripts de instalacion
-bash `./scripts/postgres.sh`
-bash `./scripts/redis.sh`
+sudo bash `./scripts/install/postgres.sh`
+sudo bash `./scripts/install/redis.sh`
