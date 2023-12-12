@@ -28,3 +28,4 @@ fi
 # Ejecutando scripts de instalacion
 sudo bash `./scripts/install/postgres.sh`
 sudo bash `./scripts/install/redis.sh`
+sudo bash `./scripts/install/mongo.sh`
