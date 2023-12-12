@@ -2,28 +2,28 @@
 
 # Despliegue Automatizado de Contededores Dockers con Bash Scripts
 
-Este repositorio tiene como objetivo documentar y automatizar el despliegue una seria de contenedores en base a scripts en bash.
+Este repositorio tiene como objetivo documentar y automatizar el despliegue de tres base de datos (POSTGRES, MONGO, REDIS) con DOCKER, para el proyecto de Smart Shell.
   
 ## Inicilizando repositorio
 
-1. **Clonar el Repositorio:**
+1. **Clonar el Repositorio**
     ```bash
         git clone https://github.com/luis122448/smart-shell-bash.git
     ```
 
-2. **Ingresar al directorio del proyecto:**
+2. **Ingresar al directorio del proyecto**
         
     ```bash
         cd smart-shell-bash
     ```
 
-3. **Ejecutar el script de instalación:**
+3. **Ejecutar el script de instalación**
     
     ```bash
         sudo bash dev-install.sh
     ```
 
-4. **Definir las variables de entorno:**
+4. **Definir las variables de entorno**
     
     Edita el archivo /etc/environment con privilegios de administrador. Por ejemplo, usando sudo y un editor de texto como nano o vim:
     ```bash
@@ -60,7 +60,7 @@ Para el despliegue en producción se ha utilizado Docker y Docker Compose, puede
         └── ...
     ```
 
-2.  **Verficiar el despliege de los contenedores:**
+2.  **Verficiar el despliege de los contenedores**
     
     ```bash
         sudo docker ps
