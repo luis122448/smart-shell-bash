@@ -7,6 +7,7 @@ if [ ! -d "smart-shell-postgres" ]; then
     git clone https://github.com/luis122448/smart-shell-postgres.git
     cd smart-shell-postgres
 else
+    git config --global --add safe.directory ./smart-shell-postgres
     cd smart-shell-postgres
     git pull origin main
 fi

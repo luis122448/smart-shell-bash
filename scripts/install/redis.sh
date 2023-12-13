@@ -7,6 +7,7 @@ if [ ! -d "smart-shell-redis" ]; then
     git clone https://github.com/luis122448/smart-shell-redis.git
     cd smart-shell-redis
 else
+    git config --global --add safe.directory ./smart-shell-redis
     cd smart-shell-redis
     git pull origin main
 fi

@@ -7,6 +7,7 @@ if [ ! -d "smart-shell-mongo" ]; then
     git clone https://github.com/luis122448/smart-shell-mongo.git
     cd smart-shell-mongo
 else
+    git config --global --add safe.directory ./smart-shell-mongo
     cd smart-shell-mongo
     git pull origin main
 fi
