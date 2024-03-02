@@ -2,7 +2,7 @@
 
 # Despliegue Automatizado de Contededores Dockers con Bash Scripts
 
-Este repositorio tiene como objetivo documentar y automatizar el despliegue de tres contenedores de base de datos (PostgresSQL, MongoDB y Redis) para el proyecto de Smart-Shell ( Facturador Electronico ) y Platform-Training ( Plataforma de Capacitacion ) utilizando scripts de Bash que automatizan la instalación de Docker y Docker Compose, la configuración de las variables de entorno, la clonación y despliegue de los repositorios de Base de Datos relacionados.
+Este repositorio tiene como objetivo documentar y automatizar el despliegue de tres contenedores de base de datos (PostgreSQL, MongoDB y Redis) para el proyecto de Smart-Shell ( Facturador Electronico ) y Platform-Training ( Plataforma de Capacitacion ) utilizando scripts de Bash que automatizan la instalación de Docker y Docker Compose, la configuración de las variables de entorno, la clonación y despliegue de los repositorios de Base de Datos relacionados.
   
 ## Repositorios Relacionados
 
@@ -13,8 +13,11 @@ Este repositorio tiene como objetivo documentar y automatizar el despliegue de t
 
 Estos repositorios contienen la documentación y los scripts de despliegue de los contenedores de base de datos para el proyecto Smart-Shell y Platform-Training
 - [Smart-Shell-Postgres](https://github.com/luis122448/smart-shell-postgres)
+PosgresSQL: Es la base de datos transaccional, encargada de guardar la información de los usuarios, roles, permisos, facturas, productos, clientes, etc.
 - [Smart-Shell-Mongo](https://github.com/luis122448/smart-shell-mongo)
+MongoDB: Es la base de datos encargada de guardar la informacion binaria ( archivos, imagenes, etc ) y su repectiva informacion de auditoria.
 - [Smart-Shell-Redis](https://github.com/luis122448/smart-shell-redis)
+Redis: Es la base de datos utilizada para el cache de la aplicacion.
 
 ### Repositorios Relacionados ( No incluidos en el despliegue )
 
