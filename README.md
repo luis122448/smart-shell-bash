@@ -2,8 +2,28 @@
 
 # Despliegue Automatizado de Contededores Dockers con Bash Scripts
 
-Este repositorio tiene como objetivo documentar y automatizar el despliegue una seria de contenedores en base a scripts en bash.
+Este repositorio tiene como objetivo documentar y automatizar el despliegue de tres contenedores de base de datos (PostgresSQL, MongoDB y Redis) para el proyecto de Smart-Shell ( Facturador Electronico ) y Platform-Training ( Plataforma de Capacitacion ) utilizando scripts de Bash que automatizan la instalación de Docker y Docker Compose, la configuración de las variables de entorno, la clonación y despliegue de los repositorios de Base de Datos relacionados.
   
+## Repositorios Relacionados
+
+### Repositorio Actual
+- [Smart-Shell-Bash](https://github.com/luis122448/smart-shell-bash)
+
+### Repositorios de Base de Datos Relacionados
+
+Estos repositorios contienen la documentación y los scripts de despliegue de los contenedores de base de datos para el proyecto Smart-Shell y Platform-Training
+- [Smart-Shell-Postgres](https://github.com/luis122448/smart-shell-postgres)
+- [Smart-Shell-Mongo](https://github.com/luis122448/smart-shell-mongo)
+- [Smart-Shell-Redis](https://github.com/luis122448/smart-shell-redis)
+
+### Repositorios Relacionados ( No incluidos en el despliegue )
+
+Repositorios referidos al BACKEND y FRONTEND de la aplicacion Smart-Shell y Platform-Training.
+- [Smart-Shell-Angular](https://github.com/luis122448/smart-shell-angular)
+- [Smart-Shell-SpringBoot](https://github.com/luis122448/smart-shell-springboot)
+- [Platform-Training-Angular](https://github.com/luis122448/platform-training-angular)
+- [Platform-Training-SpringBoot](https://github.com/luis122448/platform-training-springboot)
+
 ## Inicilizando repositorio
 
 1. **Clonar el Repositorio:**
