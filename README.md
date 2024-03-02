@@ -46,14 +46,19 @@ Repositorios referidos al BACKEND y FRONTEND de la aplicacion Smart-Shell y Plat
 4. **Definir las variables de entorno**
     
     Edita el archivo /etc/environment con privilegios de administrador. Por ejemplo, usando sudo y un editor de texto como nano o vim:
+    
     ```bash
         sudo nano /etc/environment
     ```
+    
     Agrega una línea en el formato DATABASE_PASSWORD="" al final del archivo. Por ejemplo:
+    
     ```bash
         DATABASE_PASSWORD=""
     ```
     Guarda los cambios y cierra el editor.
+
+    Nota: El password definido en la variable DATABASE_PASSWORD será utilizado para la configuración de todas las bases de datos.
     
 ## Despliegue en Producción
 
