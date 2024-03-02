@@ -61,7 +61,7 @@ Repositorios referidos al BACKEND y FRONTEND de la aplicacion Smart-Shell y Plat
     ```
     Guarda los cambios y cierra el editor.
 
-    Nota: El password definido en la variable DATABASE_PASSWORD será utilizado para la configuración de todas las bases de datos.
+    Nota: El password definido en la variable *DATABASE_PASSWORD* será utilizado para la configuración de todas las bases de datos.
     
 ## Despliegue en Producción
 
