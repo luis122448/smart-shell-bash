@@ -18,18 +18,46 @@ PosgresSQL: Es la base de datos transaccional, encargada de guardar la informaci
 MongoDB: Es la base de datos encargada de guardar la informacion binaria ( archivos, imagenes, etc ) y su repectiva informacion de auditoria.
 - [Smart-Shell-Redis](https://github.com/luis122448/smart-shell-redis)
 Redis: Es la base de datos utilizada para el cache de la aplicacion.
+- [Smart-Shell-SpringBoot](https://github.com/luis122448/smart-shell-springboot)
+SpringBoot: Es el backend de la aplicacion Smart-Shell, encargado de la logica de negocio y la comunicacion con las bases de datos.
+- [Smart-Shell-SpringBoot](https://github.com/luis122448/smart-shell-springboot)
+Angular: Es el frontend de la aplicacion Smart-Shell, encargado de la interfaz de usuario y la comunicacion con el backend.
+
+### Nomenclatura de los Commit ( Comventional Commits )
+
+Para el control de versiones se ha utilizado la nomenclatura de los commits de acuerdo a la especificación de [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). A continuación se detallan los prefijos utilizados en los commits y su significado:
+
+- **build**: Cambios que afectan el sistema de construcción o dependencias externas (ejemplo: gulp, broccoli, npm).
+- **ci**: Cambios en los archivos y scripts de configuración y automatización de CI (ejemplo: Travis, Circle, BrowserStack, SauceLabs).
+- **chore**: Otros cambios que no modifican el código fuente ni los archivos de prueba.
+- **docs**: Cambios en la documentación.
+- **feat**: Una nueva funcionalidad.
+- **fix**: Una corrección de errores.
+- **perf**: Un cambio de código que mejora el rendimiento.
+- **refactor**: Un cambio de código que no corrige un error ni agrega una función.
+- **revert**: Revierte un commit anterior.
+- **style**: Cambios que no afectan el significado del código (espacios en blanco, formato, punto y coma que faltan, etc.).
+- **test**: Agregar pruebas faltantes o corregir pruebas existentes.
+
+Adempàs, se puede definir opcionalmente un alcance para el commit, el cual puede ser cualquier cosa que especifique el lugar del cambio. Por ejemplo, auth, user, etc.
+
+A continuación se muestra un ejemplo de un mensaje de confirmación que sigue la especificación de confirmaciones convencionales:
+
+    ```bash
+        feat(auth): allow provided config object to extend other configs
+    ```
+
 
 ### Repositorios Relacionados ( No incluidos en el despliegue )
 
 Repositorios referidos al BACKEND y FRONTEND de la aplicacion Smart-Shell y Platform-Training.
-- [Smart-Shell-Angular](https://github.com/luis122448/smart-shell-angular)
-- [Smart-Shell-SpringBoot](https://github.com/luis122448/smart-shell-springboot)
 - [Platform-Training-Angular](https://github.com/luis122448/platform-training-angular)
 - [Platform-Training-SpringBoot](https://github.com/luis122448/platform-training-springboot)
 
 ## Inicilizando repositorio
 
 1. **Clonar el Repositorio**
+   
     ```bash
         git clone https://github.com/luis122448/smart-shell-bash.git
     ```
@@ -57,6 +85,8 @@ Repositorios referidos al BACKEND y FRONTEND de la aplicacion Smart-Shell y Plat
     Agrega una línea en el formato DATABASE_PASSWORD="" al final del archivo. Por ejemplo:
     
     ```bash
+        DATABASE_NAME=""
+        DATABASE_USERNAME=""
         DATABASE_PASSWORD=""
     ```
     Guarda los cambios y cierra el editor.

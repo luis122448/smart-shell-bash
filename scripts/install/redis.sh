@@ -17,18 +17,14 @@ sudo chmod +x dev-install.sh
 
 # Edit .env file
 ENV_FILE=".env"
-if [ ! -f "$ENV_FILE" ]; then
-    touch "$ENV_FILE"
-fi
+: > "$ENV_FILE"
 
-# Comprueba si la variable está definida
-if [ -n "$DATABASE_PASSWORD" ]; then
-    echo -e "REDIS_PASSWORD=$DATABASE_PASSWORD" > "$ENV_FILE"
-    echo "Se ha modificado el archivo $ENV_FILE con la contraseña de la base de datos."
-else
-    echo "La variable DATABASE_PASSWORD no está definida en el entorno del sistema." >&2
-    exit 1000
-fi
+# Crea o sobrescribe el archivo de entorno con las credenciales de Redis
+cat <<EOF > "$ENV_FILE"
+REDIS_USERNAME=${DATABASE_USERNAME}
+REDIS_PASSWORD=${DATABASE_PASSWORD}
+REDIS_DATABASE=${DATABASE_NAME}
+EOF
 
 # Deploy container
 sudo bash deploy.sh
