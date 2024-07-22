@@ -46,7 +46,10 @@ A continuación se muestra un ejemplo de un mensaje de confirmación que sigue l
     ```bash
         feat(auth): allow provided config object to extend other configs
     ```
-
+    
+    ```bash
+        fix(user): ensure bucket key does not have leading slash
+    ```
 
 ### Repositorios Relacionados ( No incluidos en el despliegue )
 
