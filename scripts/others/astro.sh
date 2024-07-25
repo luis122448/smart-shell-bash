@@ -1,15 +1,15 @@
 #!/bin/bash
 
-cd /home/$SERVER_USER/smart-shell
+cd /home/$SERVER_USER/project
 
-# Verifica si el directorio smart-shell-angular no existe
-if [ ! -d "smart-shell-angular" ]; then
+# Verifica si el directorio my-landing-page no existe
+if [ ! -d "my-landing-page" ]; then
     # Si no existe, clona el repositorio
-    git clone https://github.com/luis122448/smart-shell-angular.git
-    cd smart-shell-angular
+    git clone https://github.com/luis122448/my-landing-page.git
+    cd my-landing-page
 else
-    git config --global --add safe.directory ./smart-shell-angular
-    cd smart-shell-angular
+    git config --global --add safe.directory ./my-landing-page
+    cd my-landing-page
     git pull origin main
 fi
 

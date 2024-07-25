@@ -1,8 +1,24 @@
-DIRECTORY="./my-project"
+#!/bin/bash
+
+# Verifica la configuración del Host
+if [ -z "$SERVER_HOST" ] && [ -z "$SERVER_USER" ]; 
+then
+    echo "The SERVER_HOST or SERVER_USER variable is not defined in the sustem environment!" >&2
+    exit 1000
+fi
+
+# Verifica si la variable no está definida
+if [ -z "$DATABASE_PASSWORD" ] && [ -z "$DATABASE_USERNAME" ] && [ -z "$DATABASE_NAME" ]; 
+then
+    echo "The DATABASE USERNAME, DATABASE_NAME, or DATABASE_PASSWORD variable is not defined in the system environment!" >&2
+    exit 1000
+fi
+
+DIRECTORY="/home/$SERVER_USER/smart-shell"
 
 # Verifica si el directorio existe
-if [ -d "$DIRECTORY" ]; then
-    # Elimina todo el contenido del directorio si existe
+if [ -d "$DIRECTORY" ]; 
+then
     rm -rf "$DIRECTORY"/*
     echo "El contenido del directorio '$DIRECTORY' ha sido eliminado."
 else
@@ -18,21 +34,18 @@ else
     echo "La red 'smart-shell-net' ya existe."
 fi
 
-# Verifica si la variable no está definida
-if [ -z "$DATABASE_PASSWORD" ] && [ -z "$DATABASE_USERNAME" ] && [ -z "$DATABASE_NAME" ]; then
-    # La variable DATABASE_PASSWORD no está definida en el entorno del sistema
-    echo "La variable DATABASE_USERNAME, DATABASE_NAME o DATABASE_PASSWORD no está definida en el entorno del sistema." >&2
-    exit 1000
-fi
+# Stop containers
+sudo docker stop $(sudo docker ps -q)
 
 # Habilita permisos de ejecución
 sudo chmod +x ./scripts/install/postgres.sh
 sudo chmod +x ./scripts/install/redis.sh
 sudo chmod +x ./scripts/install/mongo.sh
 sudo chmod +x ./scripts/install/java.sh
+sudo chmod +x ./scripts/install/angular.sh
 
-# Ejecutando scripts de instalacion
 sudo bash `./scripts/install/postgres.sh`
 sudo bash `./scripts/install/redis.sh`
 sudo bash `./scripts/install/mongo.sh`
 sudo bash `./scripts/install/java.sh`
+sudo bash `./scripts/install/angular.sh`

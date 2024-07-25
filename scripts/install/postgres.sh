@@ -1,5 +1,6 @@
-# Move to /my-project
-cd ./my-project
+#!/bin/bash
+
+cd /home/$SERVER_USER/smart-shell
 
 # Verifica si el directorio smart-shell-postgres no existe
 if [ ! -d "smart-shell-postgres" ]; then
@@ -21,6 +22,8 @@ ENV_FILE=".env"
 
 # Crea o sobrescribe el archivo de entorno con las credenciales de PostgreSQL
 cat <<EOF > "$ENV_FILE"
+POSTGRES_HOST=${SERVER_HOST}
+POSTGRES_PORT=5432
 POSTGRES_USERNAME=${DATABASE_USERNAME}
 POSTGRES_PASSWORD=${DATABASE_PASSWORD}
 POSTGRES_DATABASE=${DATABASE_NAME}
@@ -28,6 +31,3 @@ EOF
 
 # Deploy container
 sudo bash deploy.sh
-
-# Return to /my-project
-cd ..

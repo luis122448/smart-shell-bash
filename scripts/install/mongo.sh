@@ -1,5 +1,6 @@
-# Move to /my-project
-cd ./my-project
+#!/bin/bash
+
+cd /home/$SERVER_USER/smart-shell
 
 # Verifica si el directorio smart-shell-mongo no existe
 if [ ! -d "smart-shell-mongo" ]; then
@@ -20,6 +21,8 @@ ENV_FILE=".env"
 : > "$ENV_FILE"
 
 cat <<EOF > "$ENV_FILE"
+MONGO_HOST=${SERVER_HOST}
+MONGO_PORT=27017
 MONGO_USERNAME=${DATABASE_USERNAME}
 MONGO_PASSWORD=${DATABASE_PASSWORD}
 MONGO_DATABASE=${DATABASE_NAME}
@@ -27,6 +30,3 @@ EOF
 
 # Deploy container
 sudo bash deploy.sh
-
-# Return to /my-project
-cd ..

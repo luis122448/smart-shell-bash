@@ -1,8 +1,6 @@
-# Move to /my-project/smart-shell-mongo
-cd ./my-project/smart-shell-mongo
+#!/bin/bash
+
+cd /home/$SERVER_USER/smart-shell/smart-shell-mongo
 
 # Deploy container
 sudo bash deploy.sh
-
-# Return to /my-project
-cd ..

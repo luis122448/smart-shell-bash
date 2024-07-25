@@ -1,8 +1,6 @@
-# Move to /my-project/smart-shell-redis
-cd ./my-project/smart-shell-redis
+#!/bin/bash
+
+cd /home/$SERVER_USER/smart-shell/smart-shell-redis
 
 # Deploy container
 sudo bash deploy.sh
-
-# Return to /my-project
-cd ..

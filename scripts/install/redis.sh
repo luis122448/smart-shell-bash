@@ -1,5 +1,6 @@
-# Move to /my-project
-cd ./my-project
+#!/bin/bash
+
+cd /home/$SERVER_USER/smart-shell
 
 # Verifica si el directorio smart-shell-redis no existe
 if [ ! -d "smart-shell-redis" ]; then
@@ -21,13 +22,12 @@ ENV_FILE=".env"
 
 # Crea o sobrescribe el archivo de entorno con las credenciales de Redis
 cat <<EOF > "$ENV_FILE"
-REDIS_USERNAME=${DATABASE_USERNAME}
+REDIS_HOST=${SERVER_HOST}
+REDIS_PORT=6379
+REDIS_USERNAME=default
 REDIS_PASSWORD=${DATABASE_PASSWORD}
 REDIS_DATABASE=${DATABASE_NAME}
 EOF
 
 # Deploy container
 sudo bash deploy.sh
-
-# Return to /my-project
-cd ..

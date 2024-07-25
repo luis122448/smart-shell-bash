@@ -51,12 +51,6 @@ A continuación se muestra un ejemplo de un mensaje de confirmación que sigue l
         fix(user): ensure bucket key does not have leading slash
     ```
 
-### Repositorios Relacionados ( No incluidos en el despliegue )
-
-Repositorios referidos al BACKEND y FRONTEND de la aplicacion Smart-Shell y Platform-Training.
-- [Platform-Training-Angular](https://github.com/luis122448/platform-training-angular)
-- [Platform-Training-SpringBoot](https://github.com/luis122448/platform-training-springboot)
-
 ## Inicilizando repositorio
 
 1. **Clonar el Repositorio**
@@ -79,15 +73,18 @@ Repositorios referidos al BACKEND y FRONTEND de la aplicacion Smart-Shell y Plat
 
 4. **Definir las variables de entorno**
     
-    Edita el archivo /etc/environment con privilegios de administrador. Por ejemplo, usando sudo y un editor de texto como nano o vim:
+    Edita el archivo /etc/environment con privilegios de administrador.
     
     ```bash
         sudo nano /etc/environment
     ```
     
-    Agrega una línea en el formato DATABASE_PASSWORD="" al final del archivo. Por ejemplo:
+    Defina las siguientes variables del sistema.
     
     ```bash
+        SMART_SHELL_DOMAIN_BACKEND=""
+        SMART_SHELL_DOMAIN_FRONTEND=""
+        SERVER_HOST=""
         DATABASE_NAME=""
         DATABASE_USERNAME=""
         DATABASE_PASSWORD=""
@@ -109,11 +106,11 @@ Para el despliegue en producción se ha utilizado Docker y Docker Compose, puede
 ## Verificacion del despliegue
 
 1. **Verificar archivos del projecto:**
-    Verificar la exportacion del codigo de los projectos, en el directorio my-project
+    Verificar la exportacion del codigo de los projectos, en el directorio smart-shell
 
     ```bash
         smart-shell-bash/
-        ├── my-project/
+        ├── smart-shell/
         │   ├── smart-shell-postgres
         │   ├── smart-shell-redis
         │   ├── smart-shell-mongo
@@ -130,9 +127,9 @@ Para el despliegue en producción se ha utilizado Docker y Docker Compose, puede
 3. **Realizar los test de conexion, siguiendo la documentacion ( README.md ) de cada de unos de los projectos**
 
     ```bash
-        sudo cat my-project/smart-shell-postgres/README.md
-        sudo cat my-project/smart-shell-redis/README.md
-        sudo cat my-project/smart-shell-mongo/README.md
+        sudo cat smart-shell/smart-shell-postgres/README.md
+        sudo cat smart-shell/smart-shell-redis/README.md
+        sudo cat smart-shell/smart-shell-mongo/README.md
     ```
 
 ## Contribuciones
