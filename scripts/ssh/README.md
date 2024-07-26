@@ -46,10 +46,3 @@ You will hit permission error when trying to retrieve the file. This is due to f
 ```bash
     sudo chmod +x /etc/letsencrypt/live
 ```
-
-
-_acme-challenge.luis122448.dev.
-
-with the following value:
-
-0OES1DPAmc8TrHsq2ZP3sq91kw5EJ60HCu97UfoQKhc
