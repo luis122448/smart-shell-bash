@@ -14,15 +14,15 @@ La automatizacion incluye la configuracion de las variables entorno, clonacion d
 ### Repositorios Relacionados
 
 - [Smart-Shell-Postgres](https://github.com/luis122448/smart-shell-postgres)
-PosgresSQL: Es la base de datos transaccional, encargada de guardar la información de los usuarios, roles, permisos, facturas, productos, clientes, etc.
+PosgresSQL: Base de datos transaccional.
 - [Smart-Shell-Mongo](https://github.com/luis122448/smart-shell-mongo)
-MongoDB: Es la base de datos encargada de guardar la informacion binaria ( archivos, imagenes, etc ) y su repectiva informacion de auditoria.
+MongoDB: Almacena información binaria (archivos, imágenes), metadata y auditoria.
 - [Smart-Shell-Redis](https://github.com/luis122448/smart-shell-redis)
-Redis: Es la base de datos utilizada para el cache de la aplicacion.
+Redis: Base de datos de caching.
 - [Smart-Shell-SpringBoot](https://github.com/luis122448/smart-shell-springboot)
-SpringBoot: Es el backend de la aplicacion Smart-Shell, encargado de la logica de negocio y la comunicacion con las bases de datos.
+SpringBoot: BackEnd para la logica de negocio y reporteria.
 - [Smart-Shell-Angular](https://github.com/luis122448/smart-shell-angular)
-Angular: Es el frontend de la aplicacion Smart-Shell, encargado de la interfaz de usuario y la comunicacion con el backend.
+Angular: FrontEnd para la interfaz de usuario.
 
 ## Nomenclatura de los Commit ( Comventional Commits )
 
@@ -47,9 +47,6 @@ A continuación se muestra un ejemplo de un mensaje de confirmación que sigue l
 
     ```bash
         feat(auth): allow provided config object to extend other configs
-    ```
-    
-    ```bash
         fix(user): ensure bucket key does not have leading slash
     ```
 
@@ -98,16 +95,16 @@ A continuación se muestra un ejemplo de un mensaje de confirmación que sigue l
     ```bash
         smart-shell-bash/
         ├── scripts/
-        |   ├── ssh/
-        |   │   ├── README.md
-        |   │   └── ...
-        |   └── proxy/
-        |   │   ├── luis122448.com.conf ( Front )
-        |   │   ├── luis122448.dev.conf ( Back )
-        |   │   ├── options-ssl-nginx.conf
-        |   │   ├── README.md
-        |   │   └── ...
-        |   └── ...
+        │   ├── ssh/
+        │   │   ├── README.md
+        │   │   └── ...
+        │   ├── proxy/
+        │   │   ├── luis122448.com.conf ( Front )
+        │   │   ├── luis122448.dev.conf ( Back )
+        │   │   ├── options-ssl-nginx.conf
+        │   │   ├── README.md
+        │   │   └── ...
+        │   └── ...
         └── ...
     ```
 
@@ -132,7 +129,7 @@ Para desplieges especficicos de cada repositorio revisar los scriptS en ./script
 ## Verificacion del despliegue
 
 1. **Verificar archivos del projecto:**
-    Verificar la exportacion del codigo de los projectos, en el directorio $SERVER_HOST
+    Verificar la clonacion de los repositorios, en el directorio $SERVER_HOST
 
     ```bash
         $SERVER_HOST/
@@ -152,7 +149,7 @@ Para desplieges especficicos de cada repositorio revisar los scriptS en ./script
         sudo docker ps
     ```
     
-3. **Realizar los test de conexion, siguiendo la documentacion ( README.md ) de cada de unos de los projectos**
+3. **Realizar los test de conexion, siguiendo la documentacion ( README.md ) de cada de uno de los proyectos**
 
     ```bash
         sudo cat smart-shell/smart-shell-postgres/README.md
@@ -160,7 +157,6 @@ Para desplieges especficicos de cada repositorio revisar los scriptS en ./script
         sudo cat smart-shell/smart-shell-mongo/README.md
         sudo cat smart-shell/smart-shell-springboot/README.md
         sudo cat smart-shell/smart-shell-angular/README.md
-        ...
     ```
 
 ## Contribuciones
