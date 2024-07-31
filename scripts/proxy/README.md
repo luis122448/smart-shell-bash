@@ -40,6 +40,7 @@
 
 ```bash
     sudo openssl x509 -in /etc/letsencrypt/live/luis122448.com/fullchain.pem -text -noout
+    sudo openssl x509 -in /etc/letsencrypt/live/luis122448.dev/fullchain.pem -text -noout
 ```
 
 # Reubica options-ssl-nginx
@@ -70,4 +71,5 @@
 
 ```bash
      curl -I http://luis122448.com
+     curl -I http://luis122448.dev
 ```

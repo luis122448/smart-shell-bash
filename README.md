@@ -2,16 +2,17 @@
 
 # Despliegue Automatizado de Contededores Dockers con Bash Scripts
 
-Este repositorio tiene como objetivo documentar y automatizar el despliegue de tres contenedores de base de datos (PostgreSQL, MongoDB y Redis) para el proyecto de Smart-Shell ( Facturador Electronico ) y Platform-Training ( Plataforma de Capacitacion ) utilizando scripts de Bash que automatizan la instalación de Docker y Docker Compose, la configuración de las variables de entorno, la clonación y despliegue de los repositorios de Base de Datos relacionados.
+Este repositorio tiene como objetivo documentar, estandarizar y automatizar el despliegue del proyecto Smart-Shell ( Facturador Electronico ), integrado por cinco repositorios independientes en un mismo servidor.
+
+La automatizacion incluye la configuracion de las variables entorno, clonacion de repositorios, generacion de certificados SSL, configuracion del servidor Nginx ( Proxy Inverso ) y finalmente el desarrollo/despliege continuo.
   
-## Repositorios Relacionados
+## Repositorios
 
 ### Repositorio Actual
 - [Smart-Shell-Bash](https://github.com/luis122448/smart-shell-bash)
 
-### Repositorios de Base de Datos Relacionados
+### Repositorios Relacionados
 
-Estos repositorios contienen la documentación y los scripts de despliegue de los contenedores de base de datos para el proyecto Smart-Shell y Platform-Training
 - [Smart-Shell-Postgres](https://github.com/luis122448/smart-shell-postgres)
 PosgresSQL: Es la base de datos transaccional, encargada de guardar la información de los usuarios, roles, permisos, facturas, productos, clientes, etc.
 - [Smart-Shell-Mongo](https://github.com/luis122448/smart-shell-mongo)
@@ -20,10 +21,10 @@ MongoDB: Es la base de datos encargada de guardar la informacion binaria ( archi
 Redis: Es la base de datos utilizada para el cache de la aplicacion.
 - [Smart-Shell-SpringBoot](https://github.com/luis122448/smart-shell-springboot)
 SpringBoot: Es el backend de la aplicacion Smart-Shell, encargado de la logica de negocio y la comunicacion con las bases de datos.
-- [Smart-Shell-SpringBoot](https://github.com/luis122448/smart-shell-springboot)
+- [Smart-Shell-Angular](https://github.com/luis122448/smart-shell-angular)
 Angular: Es el frontend de la aplicacion Smart-Shell, encargado de la interfaz de usuario y la comunicacion con el backend.
 
-### Nomenclatura de los Commit ( Comventional Commits )
+## Nomenclatura de los Commit ( Comventional Commits )
 
 Para el control de versiones se ha utilizado la nomenclatura de los commits de acuerdo a la especificación de [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). A continuación se detallan los prefijos utilizados en los commits y su significado:
 
@@ -66,13 +67,7 @@ A continuación se muestra un ejemplo de un mensaje de confirmación que sigue l
         cd smart-shell-bash
     ```
 
-3. **Ejecutar el script de instalación**
-    
-    ```bash
-        sudo bash dev-install.sh
-    ```
-
-4. **Definir las variables de entorno**
+3. **Definir las variables de entorno**
     
     Edita el archivo /etc/environment con privilegios de administrador.
     
@@ -90,13 +85,41 @@ A continuación se muestra un ejemplo de un mensaje de confirmación que sigue l
         DATABASE_USERNAME=""
         DATABASE_PASSWORD=""
     ```
+
     Guarda los cambios y cierra el editor.
-
-    Nota: El password definido en la variable *DATABASE_PASSWORD* será utilizado para la configuración de todas las bases de datos.
     
-## Despliegue en Producción
+    Nota: El password definido en la variable *DATABASE_PASSWORD* será utilizado para la configuración de todas las bases de datos.
 
-Para el despliegue en producción se ha utilizado Docker y Docker Compose, puede revisar el archivo docker-compose.yml para conocer los detalles de la configuración.
+4. **Generar los certificados SSH y configurar el servidor NGINX**
+
+    Revisar el archivo ./scripts/ssh/README.md para generar los certificados SSH segun el dominio a utilizar para el Back y Front.
+    Adicionalmente revisar la instrucciones en ./scripts/proxy/README.md para la configuracion del servidor de NGINX.
+
+    ```bash
+        smart-shell-bash/
+        ├── scripts/
+        |   ├── ssh/
+        |   │   ├── README.md
+        |   │   └── ...
+        |   └── proxy/
+        |   │   ├── luis122448.com.conf ( Front )
+        |   │   ├── luis122448.dev.conf ( Back )
+        |   │   ├── options-ssl-nginx.conf
+        |   │   ├── README.md
+        |   │   └── ...
+        |   └── ...
+        └── ...
+    ```
+
+5. **Ejecutar el script de instalación y despliege**
+    
+    ```bash
+        sudo bash dev-install.sh
+    ```
+
+## Desarrollo y despliege continuo
+
+Para el despliege de toda la aplicacion se debe ejecutar el scrip deploy.sh.
 
 1. **Ejecutar el script de despliegue**
     
@@ -104,17 +127,21 @@ Para el despliegue en producción se ha utilizado Docker y Docker Compose, puede
         sudo bash deploy.sh
     ```
 
+Para desplieges especficicos de cada repositorio revisar los scriptS en ./scripts/deploy/... 
+
 ## Verificacion del despliegue
 
 1. **Verificar archivos del projecto:**
-    Verificar la exportacion del codigo de los projectos, en el directorio smart-shell
+    Verificar la exportacion del codigo de los projectos, en el directorio $SERVER_HOST
 
     ```bash
-        smart-shell-bash/
+        $SERVER_HOST/
         ├── smart-shell/
         │   ├── smart-shell-postgres
         │   ├── smart-shell-redis
         │   ├── smart-shell-mongo
+        │   ├── smart-shell-springboot
+        │   ├── smart-shell-angular
         │   └── ...
         └── ...
     ```
@@ -131,6 +158,9 @@ Para el despliegue en producción se ha utilizado Docker y Docker Compose, puede
         sudo cat smart-shell/smart-shell-postgres/README.md
         sudo cat smart-shell/smart-shell-redis/README.md
         sudo cat smart-shell/smart-shell-mongo/README.md
+        sudo cat smart-shell/smart-shell-springboot/README.md
+        sudo cat smart-shell/smart-shell-angular/README.md
+        ...
     ```
 
 ## Contribuciones
