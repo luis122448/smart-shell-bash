@@ -38,6 +38,7 @@ Para el control de versiones se ha utilizado la nomenclatura de los commits de a
 - **revert**: Revierte un commit anterior.
 - **style**: Cambios que no afectan el significado del código (espacios en blanco, formato, punto y coma que faltan, etc.).
 - **test**: Agregar pruebas faltantes o corregir pruebas existentes.
+- **deploy**: Cambios referidos al despliege de la aplicacion
 
 Adempàs, se puede definir opcionalmente un alcance para el commit, el cual puede ser cualquier cosa que especifique el lugar del cambio. Por ejemplo, auth, user, etc.
 
