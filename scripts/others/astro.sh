@@ -25,5 +25,8 @@ cat <<EOF > "$ENV_FILE"
 API_URL=${SERVER_HOST}:8080/app-project
 EOF
 
+# Stop container
+sudo docker stop my-landing-page
+
 # Deploy container
 sudo bash deploy.sh
