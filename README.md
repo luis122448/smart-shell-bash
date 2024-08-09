@@ -124,7 +124,7 @@ Para el despliege de toda la aplicacion se debe ejecutar el scrip deploy.sh.
         sudo bash deploy.sh
     ```
 
-Para desplieges especficicos de cada repositorio revisar los scriptS en ./scripts/deploy/... 
+Para desplieges especficicos de cada repositorio revisar los scripts en ./scripts/deploy/... 
 
 ## Verificacion del despliegue
 
