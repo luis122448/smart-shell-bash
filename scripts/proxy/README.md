@@ -25,8 +25,8 @@
 # Reubica el archivo de configuración
 
 ``` bash
-    sudo cp ./scripts/proxy/luis122448.dev.conf /etc/nginx/sites-available/luis122448.dev.conf
     sudo cp ./scripts/proxy/luis122448.com.conf /etc/nginx/sites-available/luis122448.com.conf
+    sudo cp ./scripts/proxy/luis122448.dev.conf /etc/nginx/sites-available/luis122448.dev.conf
 ```
 
 # Habilitar sitio ( enlace simbolico )
