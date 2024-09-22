@@ -9,19 +9,19 @@ La automatizacion incluye la configuracion de las variables entorno, clonacion d
 ## Repositorios
 
 ### Repositorio Actual
-- [Smart-Shell-Bash](https://github.com/luis122448/smart-shell-bash)
+- [Smart-Shell-Bash](git@github.com:luis122448/smart-shell-bash)
 
 ### Repositorios Relacionados
 
-- [Smart-Shell-Postgres](https://github.com/luis122448/smart-shell-postgres)
+- [Smart-Shell-Postgres](git@github.com:luis122448/smart-shell-postgres)
 PosgresSQL: Base de datos transaccional.
-- [Smart-Shell-Mongo](https://github.com/luis122448/smart-shell-mongo)
+- [Smart-Shell-Mongo](git@github.com:luis122448/smart-shell-mongo)
 MongoDB: Almacena información binaria (archivos, imágenes), metadata y auditoria.
-- [Smart-Shell-Redis](https://github.com/luis122448/smart-shell-redis)
+- [Smart-Shell-Redis](git@github.com:luis122448/smart-shell-redis)
 Redis: Base de datos de caching.
-- [Smart-Shell-SpringBoot](https://github.com/luis122448/smart-shell-springboot)
+- [Smart-Shell-SpringBoot](git@github.com:luis122448/smart-shell-springboot)
 SpringBoot: BackEnd para la logica de negocio y reporteria.
-- [Smart-Shell-Angular](https://github.com/luis122448/smart-shell-angular)
+- [Smart-Shell-Angular](git@github.com:luis122448/smart-shell-angular)
 Angular: FrontEnd para la interfaz de usuario.
 
 ## Nomenclatura de los Commit ( Comventional Commits )
@@ -55,7 +55,7 @@ A continuación se muestra un ejemplo de un mensaje de confirmación que sigue l
 1. **Clonar el Repositorio**
    
     ```bash
-        git clone https://github.com/luis122448/smart-shell-bash.git
+        git clone git@github.com:luis122448/smart-shell-bash.git
     ```
 
 2. **Ingresar al directorio del proyecto**
@@ -75,8 +75,6 @@ A continuación se muestra un ejemplo de un mensaje de confirmación que sigue l
     Defina las siguientes variables del sistema.
     
     ```bash
-        SMART_SHELL_DOMAIN_BACKEND=""
-        SMART_SHELL_DOMAIN_FRONTEND=""
         SERVER_HOST=""
         DATABASE_NAME=""
         DATABASE_USERNAME=""

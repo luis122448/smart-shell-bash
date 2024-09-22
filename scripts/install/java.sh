@@ -1,14 +1,15 @@
 #!/bin/bash
+set -e
 
-cd /home/$SERVER_USER/smart-shell
+cd /var/www/smart-shell/deployments
 
 # Verifica si el directorio smart-shell-springboot no existe
 if [ ! -d "smart-shell-springboot" ]; then
     # Si no existe, clona el repositorio
-    git clone https://github.com/luis122448/smart-shell-springboot.git
+    git clone git@github.com:luis122448/smart-shell-springboot.git
     cd smart-shell-springboot
 else
-    git config --global --add safe.directory ./smart-shell-springboot
+    git config --global --add safe.directory "$(pwd)"
     cd smart-shell-springboot
     git pull origin main
 fi

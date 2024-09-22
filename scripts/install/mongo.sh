@@ -1,14 +1,15 @@
 #!/bin/bash
+set -e
 
-cd /home/$SERVER_USER/smart-shell
+cd /var/www/smart-shell/deployments
 
 # Verifica si el directorio smart-shell-mongo no existe
 if [ ! -d "smart-shell-mongo" ]; then
     # Si no existe, clona el repositorio
-    git clone https://github.com/luis122448/smart-shell-mongo.git
+    git clone git@github.com:luis122448/smart-shell-mongo.git
     cd smart-shell-mongo
 else
-    git config --global --add safe.directory ./smart-shell-mongo
+    git config --global --add safe.directory "$(pwd)"
     cd smart-shell-mongo
     git pull origin main
 fi

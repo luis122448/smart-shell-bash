@@ -1,6 +1,7 @@
 #!/bin/bash
+set -e
 
-cd /home/$SERVER_USER/smart-shell/smart-shell-angular
+cd /var/www/smart-shell/deployments/smart-shell-angular
 
 # Deploy container
 sudo bash deploy.sh

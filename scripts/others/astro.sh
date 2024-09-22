@@ -1,11 +1,12 @@
 #!/bin/bash
+set -e
 
-cd /home/$SERVER_USER/project
+cd /var/www/project
 
 # Verifica si el directorio my-landing-page no existe
 if [ ! -d "my-landing-page" ]; then
     # Si no existe, clona el repositorio
-    git clone https://github.com/luis122448/my-landing-page.git
+    git clone git@github.com:luis122448/my-landing-page.git
     cd my-landing-page
 else
     git config --global --add safe.directory ./my-landing-page

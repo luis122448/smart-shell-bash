@@ -14,7 +14,7 @@ then
     exit 1000
 fi
 
-DIRECTORY="/home/$SERVER_USER/smart-shell"
+DIRECTORY="/var/www/smart-shell/deployments"
 
 # Verifica si el directorio existe
 if [ -d "$DIRECTORY" ]; 

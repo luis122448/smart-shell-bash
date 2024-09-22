@@ -1,14 +1,15 @@
 #!/bin/bash
+set -e
 
-cd /home/$SERVER_USER/smart-shell
+cd /var/www/smart-shell/deployments
 
 # Verifica si el directorio smart-shell-angular no existe
 if [ ! -d "smart-shell-angular" ]; then
     # Si no existe, clona el repositorio
-    git clone https://github.com/luis122448/smart-shell-angular.git
+    git clone git@github.com:luis122448/smart-shell-angular.git
     cd smart-shell-angular
 else
-    git config --global --add safe.directory ./smart-shell-angular
+    git config --global --add safe.directory "$(pwd)"
     cd smart-shell-angular
     git pull origin main
 fi

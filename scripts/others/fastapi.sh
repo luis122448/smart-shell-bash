@@ -1,11 +1,12 @@
 #!/bin/bash
+set -e
 
-cd /home/$SERVER_USER/project
+cd /var/www/project
 
 # Verifica si el directorio metrics-fastapi no existe
 if [ ! -d "metrics-fastapi" ]; then
     # Si no existe, clona el repositorio
-    git clone https://github.com/luis122448/metrics-fastapi.git
+    git clone git@github.com:luis122448/metrics-fastapi.git
     cd metrics-fastapi
 else
     git config --global --add safe.directory ./metrics-fastapi

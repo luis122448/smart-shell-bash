@@ -1,6 +1,7 @@
 #!/bin/bash
+set -e
 
-cd /home/$SERVER_USER/project
+cd /var/www/project
 
 # Verifica si el directorio dota-shuffle no existe
 if [ ! -d "dota-shuffle" ]; then

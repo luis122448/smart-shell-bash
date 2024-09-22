@@ -1,6 +1,7 @@
 #!/bin/bash
+set -e
 
-cd /home/$SERVER_USER/smart-shell/smart-shell-redis
+cd /var/www/smart-shell/deployments/smart-shell-redis
 
 # Deploy container
 sudo bash deploy.sh

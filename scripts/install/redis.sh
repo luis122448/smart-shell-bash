@@ -1,14 +1,15 @@
 #!/bin/bash
+set -e
 
-cd /home/$SERVER_USER/smart-shell
+cd /var/www/smart-shell/deployments
 
 # Verifica si el directorio smart-shell-redis no existe
 if [ ! -d "smart-shell-redis" ]; then
     # Si no existe, clona el repositorio
-    git clone https://github.com/luis122448/smart-shell-redis.git
+    git clone git@github.com:luis122448/smart-shell-redis.git
     cd smart-shell-redis
 else
-    git config --global --add safe.directory ./smart-shell-redis
+    git config --global --add safe.directory "$(pwd)"
     cd smart-shell-redis
     git pull origin main
 fi
