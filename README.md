@@ -32,8 +32,6 @@ Angular: FrontEnd for the user interface.
         sudo mkdir /var/www/smart-shell
 
         sudo mkdir /var/www/smart-shell/configurations
-        sudo mkfir /var/www/smart-shell/deployments
-        sudo mkdir /var/www/smart-shell/volumes
     ```
 
 2. **Change the owner of the directory**
