@@ -1,94 +1,115 @@
 ![Logo del Projecto](./resources/logo.png)
 
-# Despliegue Automatizado de Contededores Dockers con Bash Scripts
+# Deploying Docker Containers with Bash Scripts
 
-Este repositorio tiene como objetivo documentar, estandarizar y automatizar el despliegue del proyecto Smart-Shell ( Facturador Electronico ), integrado por cinco repositorios independientes en un mismo servidor.
+Its repository contains the scripts necessary to automate the deployment of the Smart-Shell project, which is integrated by five independent repositories in the same server.
 
-La automatizacion incluye la configuracion de las variables entorno, clonacion de repositorios, generacion de certificados SSL, configuracion del servidor Nginx ( Proxy Inverso ) y finalmente el desarrollo/despliege continuo.
+The automation includes the configuration of the environment variables, cloning of repositories, generation of SSL certificates, configuration of the Nginx server (Reverse Proxy) and finally the continuous development/deployment.
   
-## Repositorios
+## Repositorys
 
-### Repositorio Actual
+### Principal Repository
 - [Smart-Shell-Bash](git@github.com:luis122448/smart-shell-bash)
 
-### Repositorios Relacionados
+### Relational Repositorys
 
 - [Smart-Shell-Postgres](git@github.com:luis122448/smart-shell-postgres)
-PosgresSQL: Base de datos transaccional.
+PosgresSQL: Database for the storage of structured data.
 - [Smart-Shell-Mongo](git@github.com:luis122448/smart-shell-mongo)
-MongoDB: Almacena información binaria (archivos, imágenes), metadata y auditoria.
+MongoDB: Database for the storage of non-structured data.
 - [Smart-Shell-Redis](git@github.com:luis122448/smart-shell-redis)
-Redis: Base de datos de caching.
+Redis: Database for the storage of key-value data.
 - [Smart-Shell-SpringBoot](git@github.com:luis122448/smart-shell-springboot)
-SpringBoot: BackEnd para la logica de negocio y reporteria.
+SpringBoot: BackEnd for the business logic.
 - [Smart-Shell-Angular](git@github.com:luis122448/smart-shell-angular)
-Angular: FrontEnd para la interfaz de usuario.
+Angular: FrontEnd for the user interface.
 
-## Nomenclatura de los Commit ( Comventional Commits )
+## Installation
 
-Para el control de versiones se ha utilizado la nomenclatura de los commits de acuerdo a la especificación de [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). A continuación se detallan los prefijos utilizados en los commits y su significado:
-
-- **build**: Cambios que afectan el sistema de construcción o dependencias externas (ejemplo: gulp, broccoli, npm).
-- **ci**: Cambios en los archivos y scripts de configuración y automatización de CI (ejemplo: Travis, Circle, BrowserStack, SauceLabs).
-- **chore**: Otros cambios que no modifican el código fuente ni los archivos de prueba.
-- **docs**: Cambios en la documentación.
-- **feat**: Una nueva funcionalidad.
-- **fix**: Una corrección de errores.
-- **perf**: Un cambio de código que mejora el rendimiento.
-- **refactor**: Un cambio de código que no corrige un error ni agrega una función.
-- **revert**: Revierte un commit anterior.
-- **style**: Cambios que no afectan el significado del código (espacios en blanco, formato, punto y coma que faltan, etc.).
-- **test**: Agregar pruebas faltantes o corregir pruebas existentes.
-- **deploy**: Cambios referidos al despliege de la aplicacion
-
-Adempàs, se puede definir opcionalmente un alcance para el commit, el cual puede ser cualquier cosa que especifique el lugar del cambio. Por ejemplo, auth, user, etc.
-
-A continuación se muestra un ejemplo de un mensaje de confirmación que sigue la especificación de confirmaciones convencionales:
+1. **Create a new directory**
 
     ```bash
-        feat(auth): allow provided config object to extend other configs
-        fix(user): ensure bucket key does not have leading slash
+        sudo mkdir /var/www/smart-shell
+
+        sudo mkdir /var/www/smart-shell/configurations
+        sudo mkfir /var/www/smart-shell/deployments
+        sudo mkdir /var/www/smart-shell/volumes
     ```
 
-## Inicilizando repositorio
-
-1. **Clonar el Repositorio**
+2. **Change the owner of the directory**
    
     ```bash
-        git clone git@github.com:luis122448/smart-shell-bash.git
+        sudo chown -R $USER:$USER /var/www/smart-shell
     ```
 
-2. **Ingresar al directorio del proyecto**
-        
+3. **Clone the repository**
+   
     ```bash
-        cd smart-shell-bash
+        cd /var/www/smart-shell/configurations
+
+        git clone git@github.com:luis122448/smart-shell-bash.git
+        git clone https://github.com/luis122448/smart-shell-bash.git
     ```
 
-3. **Definir las variables de entorno**
+4. **Define the environment variables**
     
-    Edita el archivo /etc/environment con privilegios de administrador.
+    Edit the file /etc/environment   
     
     ```bash
         sudo nano /etc/environment
     ```
     
-    Defina las siguientes variables del sistema.
+    Define the following environment variables:
     
     ```bash
         SERVER_HOST=""
-        DATABASE_NAME=""
+        SERVER_USER=""
         DATABASE_USERNAME=""
         DATABASE_PASSWORD=""
     ```
 
-    Guarda los cambios y cierra el editor.
+    **Nota:** The password defined in the *DATABASE_PASSWORD* variable will be used for the configuration of all databases.
+
+5. **Execute the installation script**
     
-    Nota: El password definido en la variable *DATABASE_PASSWORD* será utilizado para la configuración de todas las bases de datos.
+    ```bash
+        bash install.sh
+    ```
 
-4. **Generar los certificados SSH y configurar el servidor NGINX**
+6. **Verify the installation**
+    
+    ```bash
+        tree /var/www/smart-shell/deployments
 
-    Revisar el archivo ./scripts/ssh/README.md para generar los certificados SSH segun el dominio a utilizar para el Back y Front.
-    Adicionalmente revisar la instrucciones en ./scripts/proxy/README.md para la configuracion del servidor de NGINX.
+        /var/www/smart-shell/deployments
+        ├── smart-shell-postgres
+        ├── smart-shell-redis
+        ├── smart-shell-mongo
+        ├── smart-shell-springboot
+        ├── smart-shell-angular
+        └── ...
+    ```
+
+## Local Development
+
+1. **Execute the deployment script**
+    
+    ```bash
+        bash deploy.sh
+    ```
+
+2. **Verify the deployment**
+    
+    ```bash
+        sudo docker ps
+    ```
+
+## Production Deployment
+
+1. **Generate the SSH certificates and configure the NGINX server**
+
+    Review the file ./scripts/ssh/README.md to generate the SSH certificates according to the domain to be used for the Back and Front.
+    Additionally, review the instructions in ./scripts/proxy/README.md for the configuration of the NGINX server.
 
     ```bash
         smart-shell-bash/
@@ -106,59 +127,10 @@ A continuación se muestra un ejemplo de un mensaje de confirmación que sigue l
         └── ...
     ```
 
-5. **Ejecutar el script de instalación y despliege**
-    
-    ```bash
-        sudo bash dev-install.sh
-    ```
+## Contributing
 
-## Desarrollo y despliege continuo
+All contributions are welcome. For more information, please refer to the [CONTRIBUTING](./CONTRIBUTING.md) file.
 
-Para el despliege de toda la aplicacion se debe ejecutar el scrip deploy.sh.
+## License
 
-1. **Ejecutar el script de despliegue**
-    
-    ```bash
-        sudo bash deploy.sh
-    ```
-
-Para desplieges especficicos de cada repositorio revisar los scripts en ./scripts/deploy/... 
-
-## Verificacion del despliegue
-
-1. **Verificar archivos del projecto:**
-    Verificar la clonacion de los repositorios, en el directorio $SERVER_HOST
-
-    ```bash
-        $SERVER_HOST/
-        ├── smart-shell/
-        │   ├── smart-shell-postgres
-        │   ├── smart-shell-redis
-        │   ├── smart-shell-mongo
-        │   ├── smart-shell-springboot
-        │   ├── smart-shell-angular
-        │   └── ...
-        └── ...
-    ```
-
-2.  **Verficiar el despliege de los contenedores**
-    
-    ```bash
-        sudo docker ps
-    ```
-    
-3. **Realizar los test de conexion, siguiendo la documentacion ( README.md ) de cada de uno de los proyectos**
-
-    ```bash
-        sudo cat smart-shell/smart-shell-postgres/README.md
-        sudo cat smart-shell/smart-shell-redis/README.md
-        sudo cat smart-shell/smart-shell-mongo/README.md
-        sudo cat smart-shell/smart-shell-springboot/README.md
-        sudo cat smart-shell/smart-shell-angular/README.md
-    ```
-
-## Contribuciones
-Las contribuciones son bienvenidas. Siéntete libre de mejorar este proyecto, agregar nuevas características o corregir problemas identificados. Para contribuir, crea un Pull Request o abre un Issue.
-
-## Licencia
-Este proyecto está bajo la licencia MIT License.
+Its project is licensed under the terms of the [Creative Commons Attribution-NonCommercial 4.0 License](./LICENSE).

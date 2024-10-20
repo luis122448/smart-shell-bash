@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Ejecutando scripts de instalacion
+# Execute deployment scripts
 sudo bash `./scripts/deploy/postgres.sh`
 sudo bash `./scripts/deploy/redis.sh`
 sudo bash `./scripts/deploy/mongo.sh`
