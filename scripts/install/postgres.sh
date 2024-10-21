@@ -14,8 +14,9 @@ else
     git pull origin main
 fi
 
-# Ejecute script install.sh
+echo "Installing Smart Shell Postgres..."
 sudo chmod +x install.sh
+bash install.sh
 
 # Edit .env file
 ENV_FILE=".env"

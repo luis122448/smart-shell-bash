@@ -74,6 +74,12 @@ Angular: FrontEnd for the user interface.
         export SMART_SHELL_ANGULAR_PORT=10005
     ```
 
+    Charge the environment variables:
+
+    ```bash
+        source environment.sh
+    ```
+
     **Nota:** The password defined in the *DATABASE_PASSWORD* variable will be used for the configuration of all databases.
 
 5. **Execute the installation script**

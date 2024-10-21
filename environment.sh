@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export SERVER_LOCAL_HOST=
+export SERVER_LOCAL_HOST=172.17.0.1
 export SERVER_LOCAL_USER=
 export DATABASE_USERNAME=
 export DATABASE_PASSWORD=

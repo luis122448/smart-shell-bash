@@ -14,6 +14,10 @@ else
     git pull origin main
 fi
 
+echo "Installing Smart Shell Springboot..."
+sudo chmod +x install.sh
+bash install.sh
+
 # Edit .env file
 ENV_FILE=".env"
 : > "$ENV_FILE"

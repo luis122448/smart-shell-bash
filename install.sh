@@ -37,8 +37,8 @@ sudo chmod +x ./scripts/install/java.sh
 sudo chmod +x ./scripts/install/angular.sh
 
 # Execute installation scripts
-sudo bash `./scripts/install/postgres.sh`
-sudo bash `./scripts/install/redis.sh`
-sudo bash `./scripts/install/mongo.sh`
-sudo bash `./scripts/install/java.sh`
+sudo bash `./scripts/install/postgres.sh` &&
+sudo bash `./scripts/install/redis.sh` &&
+sudo bash `./scripts/install/mongo.sh` &&
+sudo bash `./scripts/install/java.sh` &&
 sudo bash `./scripts/install/angular.sh`
