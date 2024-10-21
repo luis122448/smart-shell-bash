@@ -9,19 +9,19 @@ The automation includes the configuration of the environment variables, cloning 
 ## Repositorys
 
 ### Principal Repository
-- [Smart-Shell-Bash](git@github.com:luis122448/smart-shell-bash)
+- [Smart-Shell-Bash](https://github.com/luis122448/smart-shell-bash)
 
 ### Relational Repositorys
 
-- [Smart-Shell-Postgres](git@github.com:luis122448/smart-shell-postgres)
+- [Smart-Shell-Postgres](https://github.com/luis122448/smart-shell-postgres)
 PosgresSQL: Database for the storage of structured data.
-- [Smart-Shell-Mongo](git@github.com:luis122448/smart-shell-mongo)
+- [Smart-Shell-Mongo](https://github.com/luis122448/smart-shell-mongo)
 MongoDB: Database for the storage of non-structured data.
-- [Smart-Shell-Redis](git@github.com:luis122448/smart-shell-redis)
+- [Smart-Shell-Redis](https://github.com/luis122448/smart-shell-redis)
 Redis: Database for the storage of key-value data.
-- [Smart-Shell-SpringBoot](git@github.com:luis122448/smart-shell-springboot)
+- [Smart-Shell-SpringBoot](https://github.com/luis122448/smart-shell-springboot)
 SpringBoot: BackEnd for the business logic.
-- [Smart-Shell-Angular](git@github.com:luis122448/smart-shell-angular)
+- [Smart-Shell-Angular](https://github.com/luis122448/smart-shell-angular)
 Angular: FrontEnd for the user interface.
 
 ## Installation
@@ -51,19 +51,27 @@ Angular: FrontEnd for the user interface.
 
 4. **Define the environment variables**
     
-    Edit the file /etc/environment   
+    First, define the IP address of the server for $SERVER_LOCAL_HOST variable:
     
     ```bash
-        sudo nano /etc/environment
+        ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+' 
     ```
-    
-    Define the following environment variables:
-    
+
+    Update the file "enviroment.sh" with the following variables:
+
     ```bash
-        SERVER_HOST=""
-        SERVER_USER=""
-        DATABASE_USERNAME=""
-        DATABASE_PASSWORD=""
+        #!/bin/bash
+        export SERVER_LOCAL_HOST=
+        export SERVER_LOCAL_USER=
+        export DATABASE_USERNAME=
+        export DATABASE_PASSWORD=
+
+        # Ports
+        export SMART_SHELL_POSTGRES_PORT=10001
+        export SMART_SHELL_REDIS_PORT=10002
+        export SMART_SHELL_MONGO_PORT=10003
+        export SMART_SHELL_SPRINGBOOT_PORT=10004
+        export SMART_SHELL_ANGULAR_PORT=10005
     ```
 
     **Nota:** The password defined in the *DATABASE_PASSWORD* variable will be used for the configuration of all databases.

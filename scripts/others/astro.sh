@@ -23,7 +23,7 @@ ENV_FILE=".env"
 
 # Crea o sobrescribe el archivo de entorno para la conexión a la base de datos
 cat <<EOF > "$ENV_FILE"
-API_URL=${SERVER_HOST}:8080/app-project
+API_URL=${SERVER_LOCAL_HOST}:8080/app-project
 EOF
 
 # Stop container

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Verify if the variable is not defined
-if [ -z "$SERVER_HOST" ] && [ -z "$SERVER_USER" ]; 
+if [ -z "$SERVER_LOCAL_HOST" ] && [ -z "$SERVER_LOCAL_USER" ]; 
 then
-    echo "The SERVER_HOST or SERVER_USER variable is not defined in the sustem environment!" >&2
+    echo "The SERVER_LOCAL_HOST or SERVER_LOCAL_USER variable is not defined in the system environment!" >&2
     exit 1000
 fi
 
@@ -20,12 +20,14 @@ else
     echo "La red 'smart-shell-net' ya existe."
 fi
 
-# Stop containers
-sudo docker stop smart-shell-postgres
-sudo docker stop smart-shell-redis
-sudo docker stop smart-shell-mongo
-sudo docker stop smart-shell-springboot
-sudo docker stop smart-shell-angular
+# Create directory deployments and volumes
+if [ ! -d "/var/www/smart-shell/deployments" ]; then
+    sudo mkdir -p /var/www/smart-shell/deployments
+fi
+
+if [ ! -d "/var/www/smart-shell/volumes" ]; then
+    sudo mkdir -p /var/www/smart-shell/volumes
+fi
 
 # Chmod scripts
 sudo chmod +x ./scripts/install/postgres.sh
