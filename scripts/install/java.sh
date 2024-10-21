@@ -5,24 +5,18 @@ cd /var/www/smart-shell/deployments
 
 # Verifica si el directorio smart-shell-springboot no existe
 if [ ! -d "smart-shell-springboot" ]; then
-    # Si no existe, clona el repositorio
     git clone git@github.com:luis122448/smart-shell-springboot.git
-    cd smart-shell-springboot
-else
-    git config --global --add safe.directory "$(pwd)"
-    cd smart-shell-springboot
-    git pull origin main
 fi
 
+cd /var/www/smart-shell/deployments/smart-shell-springboot
+git pull origin main
+
 echo "Installing Smart Shell Springboot..."
-sudo chmod +x install.sh
-bash install.sh
+sudo chmod +x install.sh &&
+bash install.sh &&
 
-# Edit .env file
-ENV_FILE=".env"
-: > "$ENV_FILE"
-
-# Crea o sobrescribe el archivo de entorno para la conexión a la base de datos
+# Environtment file
+cat <<EOF > "/var/www/smart-shell/deployments/smart-shell-springboot/.env"
 cat <<EOF > "$ENV_FILE"
 SMART_SHELL_SPRINGBOOT_PORT=${SMART_SHELL_SPRINGBOOT_PORT}
 SMART_SHELL_POSTGRES_HOST=${SERVER_LOCAL_HOST}
