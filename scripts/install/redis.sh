@@ -17,7 +17,6 @@ bash install.sh &&
 
 # Environtment file
 cat <<EOF > "/var/www/smart-shell/deployments/smart-shell-redis/.env"
-cat <<EOF > "$ENV_FILE"
 SMART_SHELL_REDIS_HOST=${SERVER_LOCAL_HOST}
 SMART_SHELL_REDIS_PORT=${SMART_SHELL_REDIS_PORT}
 SMART_SHELL_REDIS_USERNAME=default

@@ -17,7 +17,6 @@ bash install.sh &&
 
 # Environtment file
 cat <<EOF > "/var/www/smart-shell/deployments/smart-shell-springboot/.env"
-cat <<EOF > "$ENV_FILE"
 SMART_SHELL_SPRINGBOOT_PORT=${SMART_SHELL_SPRINGBOOT_PORT}
 SMART_SHELL_POSTGRES_HOST=${SERVER_LOCAL_HOST}
 SMART_SHELL_POSTGRES_PORT=${SMART_SHELL_POSTGRES_PORT}
