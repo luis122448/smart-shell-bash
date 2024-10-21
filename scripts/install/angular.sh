@@ -14,8 +14,8 @@ else
     git pull origin main
 fi
 
-# Ejecute script dev-install.sh
-sudo chmod +x dev-install.sh
+# Ejecute script install.sh
+sudo chmod +x install.sh
 
 # Edit .env file
 ENV_FILE=".env"
@@ -23,6 +23,7 @@ ENV_FILE=".env"
 
 # Crea o sobrescribe el archivo de entorno para la conexión a la base de datos
 cat <<EOF > "$ENV_FILE"
+SMART_SHELL_ANGULAR_PORT=${SMART_SHELL_ANGULAR_PORT}
 API_URL=http://${SERVER_LOCAL_HOST}:${SMART_SHELL_SPRINGBOOT_PORT}
 API_SUNAT_TOKEN=lCSzUmWQLRZT4ytYL3EgHCKTBh7K2dswFaFjsB1nKkq6RIaGB0AuRD2qvtsxm8q4
 EOF

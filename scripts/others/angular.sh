@@ -14,8 +14,8 @@ else
     git pull origin developer
 fi
 
-# Ejecute script dev-install.sh
-sudo chmod +x dev-install.sh
+# Ejecute script install.sh
+sudo chmod +x install.sh
 
 # Edit .env file
 ENV_FILE=".env"
