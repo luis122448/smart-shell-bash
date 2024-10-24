@@ -57,27 +57,28 @@ Angular: FrontEnd for the user interface.
         ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+' 
     ```
 
-    Update the file "enviroment.sh" with the following variables:
+    Then, define the environment variables in /etc/environment:
 
     ```bash
-        #!/bin/bash
-        export SERVER_LOCAL_HOST=
-        export SERVER_LOCAL_USER=
-        export DATABASE_USERNAME=
-        export DATABASE_PASSWORD=
+        sudo nano /etc/environment
+    ```
 
-        # Ports
-        export SMART_SHELL_POSTGRES_PORT=10001
-        export SMART_SHELL_REDIS_PORT=10002
-        export SMART_SHELL_MONGO_PORT=10003
-        export SMART_SHELL_SPRINGBOOT_PORT=10004
-        export SMART_SHELL_ANGULAR_PORT=10005
+    ```bash
+        SERVER_LOCAL_HOST=
+        SERVER_LOCAL_USER=
+        DATABASE_USERNAME=
+        DATABASE_PASSWORD=
+        SMART_SHELL_POSTGRES_PORT=10001
+        SMART_SHELL_REDIS_PORT=10002
+        SMART_SHELL_MONGO_PORT=10003
+        SMART_SHELL_SPRINGBOOT_PORT=10004
+        SMART_SHELL_ANGULAR_PORT=10005
     ```
 
     Charge the environment variables:
 
     ```bash
-        source environment.sh
+        source /etc/environment
     ```
 
     **Nota:** The password defined in the *DATABASE_PASSWORD* variable will be used for the configuration of all databases.
