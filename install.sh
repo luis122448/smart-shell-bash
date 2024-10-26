@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Charge environment variables
+source /etc/environment
+
 # Verify if the variable is not defined
 if [ -z "$SERVER_LOCAL_HOST" ] && [ -z "$SERVER_LOCAL_USER" ]; 
 then
@@ -36,6 +39,10 @@ if [ ! -d "/var/www/smart-shell/volumes" ]; then
     sudo mkdir -p /var/www/smart-shell/volumes
 fi
 
+if [ ! -d "/var/www/smart-shell/backups" ]; then
+    sudo mkdir -p /var/www/smart-shell/backups
+fi
+
 sudo chown -R $SERVER_LOCAL_USER:$SERVER_LOCAL_USER /var/www/smart-shell
 
 # Chmod scripts
@@ -44,6 +51,12 @@ sudo chmod +x ./scripts/install/redis.sh
 sudo chmod +x ./scripts/install/mongo.sh
 sudo chmod +x ./scripts/install/java.sh
 sudo chmod +x ./scripts/install/angular.sh
+
+sudo chmod +x ./scripts/deploy/postgres.sh
+sudo chmod +x ./scripts/deploy/redis.sh
+sudo chmod +x ./scripts/deploy/mongo.sh
+sudo chmod +x ./scripts/deploy/java.sh
+sudo chmod +x ./scripts/deploy/angular.sh
 
 # Execute installation scripts
 bash ./scripts/install/postgres.sh &&
