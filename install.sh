@@ -4,7 +4,7 @@
 source /etc/environment
 
 # Verify if the variable is not defined
-if [ -z "$SERVER_LOCAL_HOST" ] && [ -z "$SERVER_LOCAL_USER" ]; 
+if [ -z "$SERVER_LOCAL_HOST" ]; 
 then
     echo "The SERVER_LOCAL_HOST or SERVER_LOCAL_USER variable is not defined in the system environment!" >&2
     exit 1000
@@ -43,7 +43,7 @@ if [ ! -d "/var/www/smart-shell/backups" ]; then
     sudo mkdir -p /var/www/smart-shell/backups
 fi
 
-sudo chown -R $SERVER_LOCAL_USER:$SERVER_LOCAL_USER /var/www/smart-shell
+sudo chown -R $USER:$USER /var/www/smart-shell
 
 # Chmod scripts
 sudo chmod +x ./scripts/install/postgres.sh

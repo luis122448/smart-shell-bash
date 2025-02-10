@@ -65,7 +65,6 @@ Angular: FrontEnd for the user interface.
 
     ```bash
         SERVER_LOCAL_HOST=
-        SERVER_LOCAL_USER=
         DATABASE_USERNAME=
         DATABASE_PASSWORD=
         SMART_SHELL_POSTGRES_PORT=10001
