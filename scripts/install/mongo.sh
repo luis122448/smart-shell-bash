@@ -17,7 +17,6 @@ bash install.sh &&
 
 # Environtment file
 cat <<EOF > "/var/www/smart-shell/deployments/smart-shell-mongo/.env"
-SMART_SHELL_MONGO_HOST=${SERVER_LOCAL_HOST}
 SMART_SHELL_MONGO_PORT=${SMART_SHELL_MONGO_PORT}
 SMART_SHELL_MONGO_USERNAME=${DATABASE_USERNAME}
 SMART_SHELL_MONGO_PASSWORD=${DATABASE_PASSWORD}

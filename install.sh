@@ -3,13 +3,6 @@
 # Charge environment variables
 source /etc/environment
 
-# Verify if the variable is not defined
-if [ -z "$SERVER_LOCAL_HOST" ]; 
-then
-    echo "The SERVER_LOCAL_HOST or SERVER_LOCAL_USER variable is not defined in the system environment!" >&2
-    exit 1000
-fi
-
 if [ -z "$DATABASE_USERNAME" ] && [ -z "$DATABASE_PASSWORD" ]; 
 then
     echo "The DATABASE USERNAME or DATABASE_PASSWORD variable is not defined in the system environment!" >&2

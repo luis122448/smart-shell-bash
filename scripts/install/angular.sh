@@ -18,6 +18,6 @@ bash install.sh &&
 # Environtment file
 cat <<EOF > "/var/www/smart-shell/deployments/smart-shell-angular/.env"
 SMART_SHELL_ANGULAR_PORT=${SMART_SHELL_ANGULAR_PORT}
-API_URL=http://${SERVER_LOCAL_HOST}:${SMART_SHELL_SPRINGBOOT_PORT}
-API_SUNAT_TOKEN=lCSzUmWQLRZT4ytYL3EgHCKTBh7K2dswFaFjsB1nKkq6RIaGB0AuRD2qvtsxm8q4
+API_URL=http://smart-shell-springboot:8080/app-project
+HEALTH_CHECK_URL=http://smart-shell-springboot:8080/app-project/actuator/health/liveness
 EOF
