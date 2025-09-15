@@ -28,116 +28,115 @@ Angular: FrontEnd for the user interface.
 
 1. **Create a new directory**
 
-    ```bash
-        sudo mkdir /var/www/smart-shell
+```bash
+sudo mkdir /var/www/smart-shell
 
-        sudo mkdir /var/www/smart-shell/configurations
-    ```
+sudo mkdir /var/www/smart-shell/configurations
+```
 
 2. **Change the owner of the directory**
    
-    ```bash
-        sudo chown -R $USER:$USER /var/www/smart-shell
-    ```
+```bash
+sudo chown -R $USER:$USER /var/www/smart-shell
+```
 
 3. **Clone the repository**
    
-    ```bash
-        cd /var/www/smart-shell/configurations
+```bash
+cd /var/www/smart-shell/configurations
 
-        git clone git@github.com:luis122448/smart-shell-bash.git
-        git clone https://github.com/luis122448/smart-shell-bash.git
-    ```
+git clone https://github.com/luis122448/smart-shell-bash.git
+```
 
 4. **Define the environment variables**
     
-    First, define the IP address of the server for $SERVER_LOCAL_HOST variable:
+First, define the IP address of the server for $SERVER_LOCAL_HOST variable:
     
-    ```bash
-        ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+' 
-    ```
+```bash
+ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+' 
+```
 
-    Then, define the environment variables in /etc/environment:
+Then, define the environment variables in /etc/environment:
 
-    ```bash
-        sudo nano /etc/environment
-    ```
+```bash
+sudo nano /etc/environment
+```
 
-    ```bash
-        SERVER_LOCAL_HOST=
-        DATABASE_USERNAME=
-        DATABASE_PASSWORD=
-        SMART_SHELL_POSTGRES_PORT=10001
-        SMART_SHELL_REDIS_PORT=10002
-        SMART_SHELL_MONGO_PORT=10003
-        SMART_SHELL_SPRINGBOOT_PORT=10004
-        SMART_SHELL_ANGULAR_PORT=10005
-    ```
+```bash
+SERVER_LOCAL_HOST=
+DATABASE_USERNAME=
+DATABASE_PASSWORD=
+SMART_SHELL_POSTGRES_PORT=10001
+SMART_SHELL_REDIS_PORT=10002
+SMART_SHELL_MONGO_PORT=10003
+SMART_SHELL_SPRINGBOOT_PORT=10004
+SMART_SHELL_ANGULAR_PORT=10005
+```
 
-    Charge the environment variables:
+Charge the environment variables:
 
-    ```bash
-        source /etc/environment
-    ```
+```bash
+source /etc/environment
+```
 
-    **Nota:** The password defined in the *DATABASE_PASSWORD* variable will be used for the configuration of all databases.
+**Nota:** The password defined in the *DATABASE_PASSWORD* variable will be used for the configuration of all databases.
 
 5. **Execute the installation script**
     
-    ```bash
-        bash install.sh
-    ```
+```bash
+bash install.sh
+```
 
 6. **Verify the installation**
     
-    ```bash
-        tree /var/www/smart-shell/deployments
+```bash
+    tree /var/www/smart-shell/deployments
 
-        /var/www/smart-shell/deployments
-        ├── smart-shell-postgres
-        ├── smart-shell-redis
-        ├── smart-shell-mongo
-        ├── smart-shell-springboot
-        ├── smart-shell-angular
-        └── ...
-    ```
+    /var/www/smart-shell/deployments
+    ├── smart-shell-postgres
+    ├── smart-shell-redis
+    ├── smart-shell-mongo
+    ├── smart-shell-springboot
+    ├── smart-shell-angular
+    └── ...
+```
 
 ## Local Development
 
 1. **Execute the deployment script**
     
-    ```bash
-        bash deploy.sh
-    ```
+```bash
+bash deploy.sh
+```
 
 2. **Verify the deployment**
     
-    ```bash
-        sudo docker ps
-    ```
+```bash
+sudo docker ps
+```
 
 ## Production Deployment
 
 1. **Generate the SSH certificates and configure the NGINX server**
 
-    Review the file ./scripts/ssh/README.md to generate the SSH certificates according to the domain to be used for the Back and Front.
-    Additionally, review the instructions in ./scripts/proxy/README.md for the configuration of the NGINX server.
+Review the file `./scripts/ssh/README.md` to generate the SSH certificates according to the domain to be used for the Back and Front.
+Additionally, review the instructions in `./scripts/proxy/README.md` for the configuration of the NGINX server.
 
-    ```bash
-        smart-shell-bash/
-        ├── scripts/
-        │   ├── ssh/
-        │   │   ├── README.md
-        │   │   └── ...
-        │   ├── proxy/
-        │   │   ├── luis122448.com.conf ( Front )
-        │   │   ├── luis122448.dev.conf ( Back )
-        │   │   ├── options-ssl-nginx.conf
-        │   │   ├── README.md
-        │   │   └── ...
-        │   └── ...
-        └── ...
-    ```
+```bash
+    smart-shell-bash/
+    ├── scripts/
+    │   ├── ssh/
+    │   │   ├── README.md
+    │   │   └── ...
+    │   ├── proxy/
+    │   │   ├── luis122448.com.conf ( Front )
+    │   │   ├── luis122448.dev.conf ( Back )
+    │   │   ├── options-ssl-nginx.conf
+    │   │   ├── README.md
+    │   │   └── ...
+    │   └── ...
+    └── ...
+```
 
 ## Contributing
 
