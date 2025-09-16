@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: app-postgres
+  namespace: smart-shell-production
+  labels:
+    app: app-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-postgres
+  serviceName: "app-postgres"
+  template:
+    metadata:
+      labels:
+        app: app-postgres
+    spec:
+      containers:
+        - name: app-postgres
+          image: luis122448/smart-shell-postgres:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: smart-shell-config
+                  key: POSTGRES_USERNAME
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: smart-shell-secrets
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: smart-shell-config
+                  key: POSTGRES_DATABASE
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "nas-002"
+        resources:
+          requests:
+            storage: 5Gi

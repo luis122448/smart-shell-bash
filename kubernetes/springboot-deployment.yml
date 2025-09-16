@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-springboot
+  namespace: smart-shell-production
+  labels:
+    app: app-springboot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-springboot
+  template:
+    metadata:
+      labels:
+        app: app-springboot
+    spec:
+      containers:
+        - name: app-springboot
+          image: luis122448/smart-shell-springboot:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: smart-shell-config
+            - secretRef:
+                name: smart-shell-secrets

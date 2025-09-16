@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: smart-shell-production
+  labels:
+    environment: production
+    application: smart-shell
+    owner: finance-team
+    security-profile: confidential
+    monitoring: enabled
+  annotations:
+    description: "Namespace for the Smart-Shell electronic invoicing application in the Production environment. Contains core invoicing and processing services."
+    contact-email: "finance-support@your-company.com"
+    criticality: "high"
+    docs-url: "https://wiki.your-company.com/apps/smart-shell"

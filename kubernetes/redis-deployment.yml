@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-redis
+  namespace: smart-shell-production
+  labels:
+    app: app-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-redis
+  template:
+    metadata:
+      labels:
+        app: app-redis
+    spec:
+      containers:
+        - name: app-redis
+          image: luis122448/smart-shell-redis:latest
+          ports:
+            - containerPort: 6379
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: smart-shell-secrets
+                  key: REDIS_PASSWORD
+          command:
+            - "redis-server"
+            - "/usr/local/etc/redis/redis.conf"
+            - "--requirepass"
+            - "$(REDIS_PASSWORD)"

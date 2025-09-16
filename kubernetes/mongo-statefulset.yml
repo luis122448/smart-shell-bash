@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: app-mongo
+  namespace: smart-shell-production
+  labels:
+    app: app-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-mongo
+  serviceName: "app-mongo"
+  template:
+    metadata:
+      labels:
+        app: app-mongo
+    spec:
+      containers:
+        - name: app-mongo
+          image: luis122448/smart-shell-mongo:latest
+          ports:
+            - containerPort: 27017
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: smart-shell-config
+                  key: MONGO_USERNAME
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: smart-shell-secrets
+                  key: MONGO_PASSWORD
+            - name: MONGO_INITDB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: smart-shell-config
+                  key: MONGO_DATABASE
+          volumeMounts:
+            - name: mongo-storage
+              mountPath: /data/db
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "nas-002"
+        resources:
+          requests:
+            storage: 5Gi
