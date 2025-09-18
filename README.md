@@ -128,9 +128,21 @@ cd docker
 ```
 
 2.  **Configure Environment Variables:**
-Create a `.env` file in the `docker/` directory and define the required variables for production. You can use the `docker-compose.yml` file as a reference for which variables are needed.
+
+The configuration is managed via a `.env` file. You should use the provided `backup.env` as a starting point.
+
+```bash
+# 1. Copy the backup file to a new .env file
+cp backup.env .env
+
+# 2. Open the .env file and customize it
+nano .env
+```
+
+Inside the `.env` file, you must set the passwords for the databases and can customize ports, domains for CORS, and other parameters.
 
 3.  **Deploy:**
+
 Use the `deploy.sh` script within the `docker` directory to manage the deployment.
 
 ```bash
@@ -143,18 +155,20 @@ This script will handle the creation of necessary directories and start the serv
 
 For scalable and resilient deployments, you can use the Kubernetes manifests located in the `kubernetes/` directory.
 
-The directory contains individual YAML files for each component of the application (Deployments, Services, StatefulSets, ConfigMaps, etc.).
-
 1.  **Navigate to the kubernetes directory:**
 
 ```bash
 cd kubernetes
 ```
 
-2.  **Run the Deployment Script:**
-A convenience script, `deploy.sh`, is provided to apply all the manifests in the correct order. It also handles the creation of secrets.
+2.  **Configure the Deployment:**
 
-You must provide a password for the databases using the `-p` flag.
+-   **Domains:** Open the `configmap.yml` file to configure the `INGRESS_HOST` (your domain) and other service-related URLs like `CORS_ALLOWED_ORIGINS`.
+-   **Passwords:** The database passwords are not set here. They will be passed securely as a parameter to the deployment script.
+
+3.  **Run the Deployment Script:**
+
+A convenience script, `deploy.sh`, is provided to apply all the manifests in the correct order. You must provide a password for the databases using the `-p` flag.
 
 ```bash
 bash deploy.sh -p <your-database-password>
@@ -163,11 +177,9 @@ bash deploy.sh -p <your-database-password>
 This script will:
 - Create the namespace `smart-shell-production`.
 - Create a secret with the provided database password.
-- Apply the ConfigMap.
-- Deploy PostgreSQL, MongoDB, and Redis.
-- Wait for the databases to be ready.
-- Deploy the Spring Boot backend and Angular frontend.
-- Expose the application via an Ingress.
+- Apply the ConfigMap with your domain configuration.
+- Deploy all databases and applications.
+- Dynamically configure and apply the Ingress resource based on the settings in the `configmap.yml`.
 
 ## Production SSL and Nginx Configuration
 
