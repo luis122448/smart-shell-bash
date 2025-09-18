@@ -26,15 +26,15 @@ while getopts ":p:" opt; do
   case ${opt} in
     p )
       PASSWORD=$OPTARG
-      ;;
+      ;; 
     \? )
       echo "Invalid option: $OPTARG" 1>&2
       usage
-      ;;
+      ;; 
     : )
       echo "Invalid option: $OPTARG requires an argument" 1>&2
       usage
-      ;;
+      ;; 
   esac
 done
 
@@ -87,9 +87,29 @@ kubectl rollout status "deployment/$SPRINGBOOT_DEPLOYMENT" --namespace "$NAMESPA
 echo "✅ Backend is ready."
 
 echo "8. Applying Frontend Manifests (Angular)..."
+# Get Ingress values from ConfigMap
+INGRESS_HOST=$(kubectl get configmap "$CONFIGMAP_NAME" --namespace "$NAMESPACE" -o jsonpath='{.data.INGRESS_HOST}')
+INGRESS_TLS_SECRET=$(kubectl get configmap "$CONFIGMAP_NAME" --namespace "$NAMESPACE" -o jsonpath='{.data.INGRESS_TLS_SECRET}')
+
+if [ -z "$INGRESS_HOST" ] || [ -z "$INGRESS_TLS_SECRET" ]; then
+  echo "Error: INGRESS_HOST or INGRESS_TLS_SECRET not found in ConfigMap $CONFIGMAP_NAME."
+  exit 1
+fi
+
+echo "  - Using Ingress Host: $INGRESS_HOST"
+echo "  - Using Ingress TLS Secret: $INGRESS_TLS_SECRET"
+
+# Substitute placeholders in Ingress manifest and apply
+GENERATED_INGRESS_FILE="angular-ingress.generated.yml"
+cat angular-ingress.template.yml |
+  sed "s/INGRESS_HOST/$INGRESS_HOST/g" |
+  sed "s/INGRESS_TLS_SECRET/$INGRESS_TLS_SECRET/g" > $GENERATED_INGRESS_FILE
+
+kubectl apply -f $GENERATED_INGRESS_FILE
+rm $GENERATED_INGRESS_FILE
+
 kubectl apply -f angular-deployment.yml
 kubectl apply -f angular-service.yml
-kubectl apply -f angular-ingress.yml
 
 echo "9. Waiting for frontend to be ready (Timeout: $WAIT_TIMEOUT)..."
 kubectl rollout status "deployment/$ANGULAR_DEPLOYMENT" --namespace "$NAMESPACE" --timeout="$WAIT_TIMEOUT"
