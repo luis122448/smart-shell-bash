@@ -1,10 +1,10 @@
 ![Project Logo](./resources/logo.png)
 
-# Smart Shell - Bash Scripts for Docker Deployment
+# Smart Shell - Deployment Automation
 
-This repository contains the necessary scripts to automate the deployment of the Smart-Shell project, which is composed of five independent repositories, on a single server.
+This repository provides a collection of scripts and configurations to automate the deployment of the Smart-Shell project. It offers multiple deployment strategies, including a script-based approach for local development, a Docker Compose setup for single-server deployments, and Kubernetes manifests for scalable environments.
 
-The automation includes the configuration of environment variables, cloning of repositories, generation of SSL certificates, configuration of the Nginx server (Reverse Proxy), and finally, continuous development/deployment.
+The automation handles environment variable configuration, repository cloning, SSL certificate generation, and reverse proxy setup to streamline both development and production workflows.
 
 ## Repositories
 
