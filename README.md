@@ -1,70 +1,73 @@
-![Logo del Projecto](./resources/logo.png)
+![Project Logo](./resources/logo.png)
 
-# Deploying Docker Containers with Bash Scripts
+# Smart Shell - Bash Scripts for Docker Deployment
 
-Its repository contains the scripts necessary to automate the deployment of the Smart-Shell project, which is integrated by five independent repositories in the same server.
+This repository contains the necessary scripts to automate the deployment of the Smart-Shell project, which is composed of five independent repositories, on a single server.
 
-The automation includes the configuration of the environment variables, cloning of repositories, generation of SSL certificates, configuration of the Nginx server (Reverse Proxy) and finally the continuous development/deployment.
-  
-## Repositorys
+The automation includes the configuration of environment variables, cloning of repositories, generation of SSL certificates, configuration of the Nginx server (Reverse Proxy), and finally, continuous development/deployment.
 
-### Principal Repository
+## Repositories
+
+### Main Repository
 - [Smart-Shell-Bash](https://github.com/luis122448/smart-shell-bash)
 
-### Relational Repositorys
+### Related Repositories
 
 - [Smart-Shell-Postgres](https://github.com/luis122448/smart-shell-postgres)
-PosgresSQL: Database for the storage of structured data.
+  PostgreSQL: Database for storing structured data.
 - [Smart-Shell-Mongo](https://github.com/luis122448/smart-shell-mongo)
-MongoDB: Database for the storage of non-structured data.
+  MongoDB: Database for storing unstructured data.
 - [Smart-Shell-Redis](https://github.com/luis122448/smart-shell-redis)
-Redis: Database for the storage of key-value data.
+  Redis: Database for storing key-value data.
 - [Smart-Shell-SpringBoot](https://github.com/luis122448/smart-shell-springboot)
-SpringBoot: BackEnd for the business logic.
+  SpringBoot: Backend for the business logic.
 - [Smart-Shell-Angular](https://github.com/luis122448/smart-shell-angular)
-Angular: FrontEnd for the user interface.
+  Angular: Frontend for the user interface.
 
-## Installation
+## Development Environment Setup
 
-1. **Create a new directory**
+This describes the setup for a local development environment, where each service runs in its own Docker container.
+
+### Installation
+
+1.  **Create a new directory**
 
 ```bash
-sudo mkdir /var/www/smart-shell
-
-sudo mkdir /var/www/smart-shell/configurations
+sudo mkdir -p /var/www/smart-shell/configurations
 ```
 
-2. **Change the owner of the directory**
-   
+2.  **Change the owner of the directory**
+
 ```bash
 sudo chown -R $USER:$USER /var/www/smart-shell
 ```
 
-3. **Clone the repository**
-   
+3.  **Clone the repository**
+
 ```bash
 cd /var/www/smart-shell/configurations
-
 git clone https://github.com/luis122448/smart-shell-bash.git
+cd smart-shell-bash
 ```
 
-4. **Define the environment variables**
-    
-First, define the IP address of the server for $SERVER_LOCAL_HOST variable:
-    
+4.  **Define the environment variables**
+
+First, define the server's IP address for the `$SERVER_LOCAL_HOST` variable. You can get the Docker bridge IP with:
+
 ```bash
-ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+' 
+ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+'
 ```
 
-Then, define the environment variables in /etc/environment:
+Then, define the environment variables in `/etc/environment`:
 
 ```bash
 sudo nano /etc/environment
 ```
 
+Add the following variables:
 ```bash
-DATABASE_USERNAME=
-DATABASE_PASSWORD=
+DATABASE_USERNAME=<your_username>
+DATABASE_PASSWORD=<your_password>
 SMART_SHELL_POSTGRES_PORT=10001
 SMART_SHELL_REDIS_PORT=10002
 SMART_SHELL_MONGO_PORT=10003
@@ -72,69 +75,120 @@ SMART_SHELL_SPRINGBOOT_PORT=10004
 SMART_SHELL_ANGULAR_PORT=10005
 ```
 
-Charge the environment variables:
+Load the environment variables:
 
 ```bash
 source /etc/environment
 ```
 
-**Nota:** The password defined in the *DATABASE_PASSWORD* variable will be used for the configuration of all databases.
+**Note:** The password defined in the `DATABASE_PASSWORD` variable will be used for the configuration of all databases.
 
-5. **Execute the installation script**
-    
+5.  **Execute the installation script**
+
 ```bash
 bash install.sh
 ```
 
-6. **Verify the installation**
-    
-```bash
-    tree /var/www/smart-shell/deployments
+6.  **Verify the installation**
 
-    /var/www/smart-shell/deployments
-    ├── smart-shell-postgres
-    ├── smart-shell-redis
-    ├── smart-shell-mongo
-    ├── smart-shell-springboot
-    ├── smart-shell-angular
-    └── ...
+This will clone all the related project repositories into the `deployments` directory.
+
+```bash
+tree /var/www/smart-shell/deployments
 ```
 
-## Local Development
+### Local Development Workflow
 
-1. **Execute the deployment script**
-    
+1.  **Execute the deployment script**
+
+This script builds and starts the Docker containers for each service.
+
 ```bash
 bash deploy.sh
 ```
 
-2. **Verify the deployment**
-    
+2.  **Verify the deployment**
+
 ```bash
 sudo docker ps
 ```
 
-## Production Deployment
+## Deployment Options
 
-1. **Generate the SSH certificates and configure the NGINX server**
+This project offers two main ways to deploy the application stack for production or staging environments: Docker Compose and Kubernetes.
 
-Review the file `./scripts/ssh/README.md` to generate the SSH certificates according to the domain to be used for the Back and Front.
-Additionally, review the instructions in `./scripts/proxy/README.md` for the configuration of the NGINX server.
+### Docker Compose Deployment
+
+The `docker/` directory contains the necessary files to deploy the entire application stack using Docker Compose. This is a straightforward method for single-server deployments.
+
+1.  **Navigate to the docker directory:**
 
 ```bash
-    smart-shell-bash/
-    ├── scripts/
-    │   ├── ssh/
-    │   │   ├── README.md
-    │   │   └── ...
-    │   ├── proxy/
-    │   │   ├── luis122448.com.conf ( Front )
-    │   │   ├── luis122448.dev.conf ( Back )
-    │   │   ├── options-ssl-nginx.conf
-    │   │   ├── README.md
-    │   │   └── ...
-    │   └── ...
-    └── ...
+cd docker
+```
+
+2.  **Configure Environment Variables:**
+Create a `.env` file in the `docker/` directory and define the required variables for production. You can use the `docker-compose.yml` file as a reference for which variables are needed.
+
+3.  **Deploy:**
+Use the `deploy.sh` script within the `docker` directory to manage the deployment.
+
+```bash
+bash deploy.sh
+```
+
+This script will handle the creation of necessary directories and start the services defined in `docker-compose.yml`.
+
+### Kubernetes Deployment
+
+For scalable and resilient deployments, you can use the Kubernetes manifests located in the `kubernetes/` directory.
+
+The directory contains individual YAML files for each component of the application (Deployments, Services, StatefulSets, ConfigMaps, etc.).
+
+1.  **Navigate to the kubernetes directory:**
+
+```bash
+cd kubernetes
+```
+
+2.  **Run the Deployment Script:**
+A convenience script, `deploy.sh`, is provided to apply all the manifests in the correct order. It also handles the creation of secrets.
+
+You must provide a password for the databases using the `-p` flag.
+
+```bash
+bash deploy.sh -p <your-database-password>
+```
+
+This script will:
+- Create the namespace `smart-shell-production`.
+- Create a secret with the provided database password.
+- Apply the ConfigMap.
+- Deploy PostgreSQL, MongoDB, and Redis.
+- Wait for the databases to be ready.
+- Deploy the Spring Boot backend and Angular frontend.
+- Expose the application via an Ingress.
+
+## Production SSL and Nginx Configuration
+
+For production deployments that are not on Kubernetes, you may need to configure Nginx as a reverse proxy with SSL.
+
+Review the `README.md` file in `./scripts/ssh/` to generate SSL certificates for your domain. Additionally, review the instructions in `./scripts/proxy/README.md` for configuring Nginx.
+
+```
+smart-shell-bash/
+├── scripts/
+│   ├── ssh/
+│   │   ├── README.md
+│   │   └── ...
+│   ├── proxy/
+│   │   ├── luis122448.com.conf (Example for Frontend)
+│   │   ├── luis122448.dev.conf (Example for Backend)
+│   │   ├── options-ssl-nginx.conf
+│   │   ├── README.md
+│   │   └── ...
+│   └── ...
+└── ...
 ```
 
 ## Contributing
@@ -143,4 +197,4 @@ All contributions are welcome. For more information, please refer to the [CONTRI
 
 ## License
 
-Its project is licensed under the terms of the [Creative Commons Attribution-NonCommercial 4.0 License](./LICENSE).
+This project is licensed under the terms of the [Creative Commons Attribution-NonCommercial 4.0 License](./LICENSE).
