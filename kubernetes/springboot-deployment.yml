@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-springboot
+  name: springboot-deployment
   namespace: smart-shell-production
   labels:
-    app: app-springboot
+    app: springboot
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app-springboot
+      app: springboot
   template:
     metadata:
       labels:
-        app: app-springboot
+        app: springboot
     spec:
       containers:
-        - name: app-springboot
+        - name: springboot
           image: luis122448/smart-shell-springboot:latest
           ports:
             - containerPort: 8080

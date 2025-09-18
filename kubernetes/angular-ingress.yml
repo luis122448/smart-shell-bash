@@ -4,8 +4,10 @@ metadata:
   name: angular-ingress
   namespace: smart-shell-production
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
+  ingressClassName: nginx
   rules:
     - host: smart-shell.lcalvo.com
       http:
@@ -17,3 +19,7 @@ spec:
                 name: angular-service
                 port:
                   number: 80
+  tls:
+    - hosts:
+        - smart-shell.lcalvo.com
+      secretName: smart-shell-lcalvo-com-tls

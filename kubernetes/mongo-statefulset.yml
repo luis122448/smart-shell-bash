@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: app-mongo
+  name: mongo-statefulset
   namespace: smart-shell-production
   labels:
-    app: app-mongo
+    app: mongo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app-mongo
-  serviceName: "app-mongo"
+      app: mongo
+  serviceName: "mongo-service"
   template:
     metadata:
       labels:
-        app: app-mongo
+        app: mongo
     spec:
       containers:
-        - name: app-mongo
+        - name: mongo
           image: luis122448/smart-shell-mongo:latest
           ports:
             - containerPort: 27017

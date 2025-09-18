@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-redis
+  name: redis-deployment
   namespace: smart-shell-production
   labels:
-    app: app-redis
+    app: redis
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app-redis
+      app: redis
   template:
     metadata:
       labels:
-        app: app-redis
+        app: redis
     spec:
       containers:
-        - name: app-redis
+        - name: redis
           image: luis122448/smart-shell-redis:latest
           ports:
             - containerPort: 6379

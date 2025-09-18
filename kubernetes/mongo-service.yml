@@ -3,11 +3,10 @@ kind: Service
 metadata:
   name: mongo-service
   namespace: smart-shell-production
-  labels:
-    app: mongo-service
 spec:
+  clusterIP: None
   ports:
     - port: 27017
-      targetPort: 27017
+      name: mongo
   selector:
-    app: mongo-service
+    app: mongo

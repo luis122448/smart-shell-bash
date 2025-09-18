@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-angular
+  name: angular-deployment
   namespace: smart-shell-production
   labels:
-    app: app-angular
+    app: angular
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app-angular
+      app: angular
   template:
     metadata:
       labels:
-        app: app-angular
+        app: angular
     spec:
       containers:
-        - name: app-angular
+        - name: angular
           image: luis122448/smart-shell-angular:latest
           ports:
             - containerPort: 80

@@ -3,11 +3,10 @@ kind: Service
 metadata:
   name: redis-service
   namespace: smart-shell-production
-  labels:
-    app: redis-service
 spec:
+  clusterIP: None
   ports:
     - port: 6379
-      targetPort: 6379
+      name: redis
   selector:
-    app: redis-service
+    app: redis

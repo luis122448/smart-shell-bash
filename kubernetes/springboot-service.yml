@@ -6,8 +6,13 @@ metadata:
   labels:
     app: springboot-service
 spec:
-  ports:
-    - port: 8080
-      targetPort: 8080
+  type: ClusterIP
   selector:
-    app: springboot-service
+    app: springboot
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      name: springboot
+  selector:
+    app: springboot

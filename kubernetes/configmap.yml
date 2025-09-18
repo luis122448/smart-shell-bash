@@ -16,5 +16,5 @@ data:
   REDIS_HOST: "redis-service.smart-shell-production.svc.cluster.local"
   REDIS_PORT: "6379"
   CORS_ALLOWED_ORIGINS: "http://smart-shell.lcalvo.com, https://smart-shell.lcalvo.com"
-  API_URL: "http://springboot-service.smart-shell-production:8080/app-project"
+  API_URL: "http://springboot-service.smart-shell-production.svc.cluster.local:8080/app-project"
   HEALTH_CHECK_URL: "http://springboot-service.smart-shell-production.svc.cluster.local:8080/app-project/actuator/health/liveness"

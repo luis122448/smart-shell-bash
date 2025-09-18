@@ -3,11 +3,10 @@ kind: Service
 metadata:
   name: postgres-service
   namespace: smart-shell-production
-  labels:
-    app: postgres-service
 spec:
+  clusterIP: None
   ports:
     - port: 5432
-      targetPort: 5432
+      name: postgres
   selector:
-    app: postgres-service
+    app: postgres
